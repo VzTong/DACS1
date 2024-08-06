@@ -1,0 +1,112 @@
+﻿@using MoviePJ.WebConfig.Consts
+<!-- BEGIN | Header -->
+<header class="ht-header full-width-hd">
+	<div class="row">
+
+		<nav id="mainNav" class="navbar navbar-default navbar-custom">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header logo">
+				<div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<div id="nav-icon1">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+				<a asp-action="Index" asp-area="" asp-controller="Home">
+					<img class="logo" src="~/images/Logo.jpg" alt="" width="139" height="88">
+				</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav flex-child-menu menu-left">
+					<li class="hidden">
+						<a href="#page-top"></a>
+					</li>
+					<li>
+						<a class="btn btn-default" asp-action="Index" asp-area="" asp-controller="Home">Home</a>
+					</li>
+					<li class="dropdown first">
+						<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+							Movies & Animes <i class="fa fa-angle-down" aria-hidden="true"></i>
+						</a>
+						<ul class="dropdown-menu level1">
+							<li><a asp-controller="Film" asp-action="MovieGrid">Movie grid</a></li>
+							<li><a asp-controller="Film" asp-action="MovieList">Movie list</a></li>
+							<li><a asp-controller="Film" asp-action="AnimeGrid">Anime grid</a></li>
+							<li class="it-last"><a asp-controller="Film" asp-action="AnimeList">Anime list</a></li>
+						</ul>
+					</li>
+					<li class="dropdown first">
+						<a asp-action="FilmByGenre" asp-controller="Film"
+							class="btn btn-default dropdown-toggle lv1" style="z-index: 999">
+							Films 
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+						</a>
+
+						@await Component.InvokeAsync("CateMenu")
+
+					</li>
+				</ul>
+				<ul class="nav navbar-nav flex-child-menu menu-right">
+					<li class="sidebar">
+						<form class="d-flex sb-search" role="search" asp-action="Search" asp-controller="Film" method="get">
+							<input class="form-control me-2" name="keywork" type="search" placeholder="Search film..." aria-label="Search">
+						</form>
+					</li>
+
+					@if (Context.User.Identity.IsAuthenticated)
+					{
+						var roleId = Convert.ToInt32(Context.User.Claims.SingleOrDefault(c => c.Type.Contains(AppClaimTypes.RoleId))?.Value);
+						<li class="dropdown first">
+							@if (roleId != AppConst.ROLE_CUSTOMER_ID)
+							{
+								<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+									<i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+								</a>
+							}
+							else
+							{
+								<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+									<i class="fa-solid fa-user" aria-hidden="true"></i>
+								</a>
+							}
+							<ul class="dropdown-menu level1">
+								
+								<li><p style="margin-bottom: 10px">Hello: <strong>@Context.User.Identity.Name</strong></p></li>
+								@if (roleId != AppConst.ROLE_CUSTOMER_ID)
+								{
+									<li>
+										<a class="btn btn-outline-info" asp-area="Admin" asp-controller="Home" asp-action="Index">
+											Web Managemet
+										</a>
+									</li>
+								}
+
+								<li>
+									<a class="btn-outline-info" asp-controller="Account" asp-action="UserProfile">
+										<i class="fa-solid fa-address-card"></i>Profile
+									</a>
+								</li> 
+
+								<li>
+									<a class="btn-outline-info" asp-controller="Account" asp-action="Logout">
+										<i class="fa fa-sign-out"></i> Log out
+									</a>
+								</li>
+							</ul>
+						</li>
+					}
+					else
+					{
+						<li class="loginLink"><a href="#">Log In</a></li>
+						<li class="btn signupLink"><a href="#">Register</a></li>
+					}
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</nav>
+	</div>
+</header>
+<!-- END | Header -->

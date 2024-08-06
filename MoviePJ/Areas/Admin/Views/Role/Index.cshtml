@@ -1,0 +1,94 @@
+﻿@model IEnumerable<MoviePJ.Areas.Admin.ViewModels.Role.RoleListItemVM>
+@{
+	ViewData["Title"] = "List of role";
+
+	var index = 0;
+}
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="m-b-10 mt-5">Role manager Page</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a href="#!">Role manager Page</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ breadcrumb ] end -->
+<!-- [ Main Content ] start -->
+<div class="card">
+	<div class="card-header">
+		<h5>Role manager</h5>
+	</div>
+	@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppRole.VIEW_LIST))
+	{
+		@if (User.IsInPermission(AuthConst.AppRole.CREATE))
+		{
+			<div class="ml-3 d-flex">
+				<div class="my-2 mr-2">
+					<a asp-action="Create" class="btn btn-primary">
+						<i class="fas fa-plus-circle"></i> &nbsp; Add new
+					</a>
+				</div>
+			</div>
+		}
+
+		<div class="card-body table-border-style">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Create Date</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody style="text-align: center">
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>@item.RowIndex</td>
+								<td>@Html.DisplayFor(modelItem => item.Name)</td>
+								<td style="text-align: justify;">
+									@Html.DisplayFor(modelItem => item.Desc)
+								</td>
+								<td>@item.CreatedDate.ToDMY()</td>
+								<td style="text-align: center">
+									@if (item.Id != MoviePJ.WebConfig.Consts.AppConst.ROLE_ADMINISTRATOR_ID && item.Id != MoviePJ.WebConfig.Consts.AppConst.ROLE_CUSTOMER_ID)
+									{
+										@if (User.IsInPermission(AuthConst.AppRole.UPDATE))
+										{
+											<a asp-action="Edit" asp-route-id="@item.Id"
+											   class="btn btn-icon btn-outline-secondary btn-sm"><i class="fa-regular fa-pen-to-square"></i></a>
+										}
+										@if (User.IsInPermission(AuthConst.AppRole.DELETE))
+										{
+											<a asp-action="Delete" asp-route-id="@item.Id"
+											   class="btn btn-icon btn-outline-danger btn-sm"><i class="fa-regular fa-trash-can"></i></a>
+										}
+									}
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div style=" margin-left: 4rem !important;">
+			<partial name="_Pager" />
+		</div>
+	}
+	else
+	{
+		<h3 class="p-3 text-center;" style="color: #00acc1; cursor: context-menu;">You don't have permission!</h3>
+	}
+</div>

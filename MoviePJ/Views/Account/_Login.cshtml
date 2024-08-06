@@ -1,0 +1,27 @@
+﻿@section scripts {
+    <partial name="_Validation" />
+}
+<!--login form popup-->
+<div class="login-wrapper" id="login-content">
+    <div class="login-content" style="width: 430px">
+        <a href="#" class="close">x</a>
+        <h3>Login</h3>
+        <form method="post" asp-action="Login" asp-controller="Account">
+           
+            <div class="row user-box">
+                <input type="text" name="Username" required="">
+                <label>Username</label>
+            </div>
+           
+            <div class="row user-box">
+                <input type="password" name="Password" required="">
+                <label>Password</label>
+            </div>
+
+            <div class="row">
+                <button class="custom-btn btn-5" style="margin-top: 10px; width: 100%" type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!--end of login form popup-->

@@ -1,0 +1,61 @@
+﻿@model MoviePJ.Areas.Admin.ViewModels.User.UserAddOrEditVM
+
+@{
+	ViewData["Title"] = $"Update account {@Model.Username}";
+}
+
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="m-b-10 mt-5">Users manager Page</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a asp-controller="User" asp-action="Index" asp-area="Admin">Users manager Page</a></li>
+					<li class="breadcrumb-item"><a href="#!">Page update account</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ breadcrumb ] end -->
+
+<div class="card">
+	<div class="card-header">
+		<h5>Update account ⌈ @Model.Username ⌋</h5>
+	</div>
+
+	<div class="card-body">
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="small mb-2">
+					Last updated at @Model?.UpdatedDate.ToDMYHM()
+				</div>
+				<form asp-action="Edit" method="post" autocomplete="off">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<partial name="_AddOrEdit" />
+					<div class="form-group">
+						<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save </button>
+						<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Retype</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<partial name="_BackToList" />
+</div>
+
+
+@section scripts {
+	<link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+	<link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
+	<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+	<script src="~/lib/elfinder/js/elfinder.min.js"></script>
+	<script src="~/js/user/create-edit-user.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MoviePJ.Entities.AppFilm>
+@{
+	ViewBag.Title = "Movie list";
+}
+
+<div class="hero common-hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hero-ct">
+					<h1>Movie Listing - Grid</h1>
+					<ul class="breadcumb">
+						<li class="active"><a asp-action="Index" asp-area="" asp-controller="Home">Home</a></li>
+						<li> <span class="ion-ios-arrow-right"></span> Movie listing</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="page-single">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="topbar-filter fw">
+					<p>Found <span>@ViewBag.movieTotal</span> <span>movies</span> in total</p>
+					
+					<a asp-controller="Film" asp-action="MovieList" class="list"><i class="ion-ios-list-outline "></i></a>
+					<a asp-controller="Film" asp-action="MovieGrid" class="grid"><i class="ion-grid active"></i></a>
+				</div>
+				<div class="flex-wrap-movielist mv-grid-fw" id="">
+					@foreach (var films in Model)
+					{
+						<div class="movie-item-style-2 movie-item-style-1">
+
+							@if (films.Cover == null || films.Cover == "")
+							{
+								<img src="/images/img_err.png" alt="@films.Name" style="width: 193px; height: 296px; object-fit:cover">
+							}
+							else
+							{
+								<img src="@films.Cover" alt="" style="width: 193px; height: 296px; object-fit:cover;">
+							}
+
+							<div class="hvr-inner">
+								<a asp-area="" asp-controller="Film"
+								   asp-action="FilmDetail"
+								   asp-route-slug="@films.Slug"
+								   asp-route-filmId="@films.Id">
+
+									Read more <i class="ion-android-arrow-dropright"></i>
+								</a>
+							</div>
+
+							<div class="mv-item-infor">
+								<h6>
+									<a asp-area="" asp-controller="Film"
+									   asp-action="FilmDetail"
+									   asp-route-slug="@films.Slug"
+									   asp-route-filmId="@films.Id">
+
+										@films.Name
+									</a>
+								</h6>
+								<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							</div>
+						</div>
+					}
+				</div>
+				<div class="topbar-filter">
+					<label>Movies per page:</label>
+
+					<partial name="../Shared/_PagerMovieGrid.cshtml" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

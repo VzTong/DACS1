@@ -1,0 +1,42 @@
+﻿@model MoviePJ.ViewModels.Account.UserProfileClientVM
+@section scripts {
+	<partial name="_Validation" />
+}
+
+<!--change avt form popup-->
+<div class="login-wrapper" id="avatar-content">
+	<div class="login-content">
+		<a href="#" class="close">x</a>
+		<h3>Change Avatar</h3>
+		<form method="POST" asp-action="ChangeAvt" asp-controller="Account" enctype="multipart/form-data">
+			<div class="row user-img">
+				<img id="imagePreview" src="@Model.Avatar" alt=""><br>
+			</div>
+
+			<div class="row user-box">
+				<input type="file" id="fileInput" class="input" style="margin-top: 10px" asp-for="@Model.AvatarUpload" placeholder="Your Avatar Upload... (*)">
+			</div>
+
+			<div class="row">
+				<button style="margin-top: 10px; width: 100%" class="custom-btn btn-5" type="submit">Change avatar</button>
+			</div>
+		</form>
+	</div>
+</div>
+<!--end of change avt form popup-->
+
+<script>
+	const fileInput = document.getElementById('fileInput');
+	const imagePreview = document.getElementById('imagePreview');
+
+	fileInput.addEventListener('change', function () {
+		const file = fileInput.files[0];
+		if (file) {
+			const reader = new FileReader();
+			reader.onload = function (e) {
+				imagePreview.src = e.target.result;
+			};
+			reader.readAsDataURL(file);
+		}
+	});
+</script>

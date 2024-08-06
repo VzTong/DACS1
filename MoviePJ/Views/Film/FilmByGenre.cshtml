@@ -1,0 +1,80 @@
+﻿@model IEnumerable<MoviePJ.ViewModels.Film.FilmVM>
+@{
+	ViewBag.Title = "Film list";
+}
+
+<div class="hero common-hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hero-ct">
+					<h1>Films Listing - @ViewBag.TitleH1</h1>
+					<ul class="breadcumb">
+						<li class="active"><a asp-action="Index" asp-area="" asp-controller="Home">Home</a></li>
+						<li> <span class="ion-ios-arrow-right"></span> Movie listing</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="page-single">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				@if (Model is null)
+				{
+					<section class="product-line-content">
+						<h3>There are no films</h3>
+					</section>
+				}
+				<div class="topbar-filter fw">
+					<p>Found <span>@ViewBag.filmsTotal</span> <span>movies</span> in total</p>
+				</div>
+				<div class="flex-wrap-movielist mv-grid-fw">
+					@foreach (var films in Model)
+					{
+						<div class="movie-item-style-2 movie-item-style-1">
+
+							@if (films.Cover == null || films.Cover == "")
+							{
+								<img src="/images/img_err.png" alt="@films.Name" style="width: 193px; height: 296px; object-fit:cover">
+							}
+							else
+							{
+								<img src="/@films.Cover" alt="" style="width: 193px; height: 296px; object-fit:cover;">
+							}
+
+							<div class="hvr-inner">
+								<a asp-controller="Film"
+								   asp-action="FilmDetail"
+								   asp-route-slug="@films.Slug"
+								   asp-route-filmId="@films.Id">
+
+									Read more <i class="ion-android-arrow-dropright"></i>
+								</a>
+							</div>
+
+							<div class="mv-item-infor">
+								<h6>
+									<a asp-controller="Film"
+									   asp-action="FilmDetail"
+									   asp-route-slug="@films.Slug"
+									   asp-route-filmId="@films.Id">
+
+										@films.Name
+									</a>
+								</h6>
+								<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							</div>
+						</div>
+					}
+				</div>
+				<div class="topbar-filter">
+					<label>Movies per page:</label>
+					<partial name="_page.cshtml" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

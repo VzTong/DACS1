@@ -1,0 +1,136 @@
+﻿@using System.Security.Claims
+@using MoviePJ.Consts
+@using MoviePJ.WebConfig.Consts
+
+@model IEnumerable<MoviePJ.Areas.Admin.ViewModels.User.UserListItemVM>
+@{
+	ViewData["Title"] = "List of users";
+	var roleId = Convert.ToInt32(Context.User.Claims.SingleOrDefault(c => c.Type.Contains(AppClaimTypes.RoleId))?.Value);
+}
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="m-b-10 mt-5">Users manager Page</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a href="#!">Users manager Page</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ breadcrumb ] end -->
+<!-- [ Main Content ] start -->
+<div class="card">
+	<div class="card-header">
+		<h5>User manager</h5>
+	</div>
+	@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppUser.VIEW_LIST))
+	{
+		@if (User.IsInPermission(AuthConst.AppUser.CREATE) && roleId == AppConst.ROLE_ADMINISTRATOR_ID)
+		{
+			<div class="ml-3 d-flex">
+				<div class="my-2 mr-2">
+					<a asp-action="Create" class="btn btn-primary">
+						<i class="fas fa-user-plus"></i> &nbsp; Add new
+					</a>
+				</div>
+			</div>
+		}
+
+		<div class="card-body table-border-style">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>UserName</th>
+							<th>FullName</th>
+							<th>Phone</th>
+							<th>Email</th>
+							<th>Role</th>
+							<th>Create Date</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody style="text-align: center">
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>@item.RowIndex</td>
+								<td>
+									@item.Username
+									@if (item.IsBlock)
+									{
+										<span class="small text-secondary"> <i class="fa fa-lock"></i> @item.BlockedTo.ToDMY()</span>
+									}
+								</td>
+								<td>@item.FullName</td>
+								<td>@item.PhoneNumber1</td>
+								<td>@item.Email</td>
+								<td>@item.RoleName</td>
+								<td>@item.CreatedDate.ToDMY()</td>
+								<td style="text-align: center">
+									@if (User.IsInPermission(AuthConst.AppUser.UPDATE))
+									{
+										<a asp-action="Edit" asp-route-id="@item.Id"
+										   class="btn btn-icon btn-outline-secondary btn-sm"><i class="fa-regular fa-pen-to-square"></i></a>
+									}
+									@if (User.IsInPermission(AuthConst.AppUser.BLOCK))
+									{
+										if (item.IsBlock)
+										{
+											<a asp-action="UnBlockUser" asp-route-id="@item.Id"
+											   class="btn btn-icon btn-outline-secondary btn-sm"><i class="fas fa-unlock"></i></a>
+
+										}
+										else
+										{
+											<button type="button" data-id="@item.Id" class="btn btn-icon btn-outline-danger btn-sm js-block" data-toggle="modal" data-target="#ModalBlock">
+												<i class="fas fa-ban"></i>
+											</button>
+										}
+									}
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div style=" margin-left: 4rem !important;">
+			<partial name="_Pager" />
+		</div>
+	}
+	else
+	{
+		<h3 class="p-3 text-center;" style="color: #00acc1; cursor: context-menu;">You don't have permission!</h3>
+	}
+</div>
+
+<div class="modal fade" id="ModalBlock" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body" id="modal-block">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary js-succes-block">Lock account</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section scripts {
+	<script src="~/js/user/blockuser.js" asp-append-version="true"></script>
+}

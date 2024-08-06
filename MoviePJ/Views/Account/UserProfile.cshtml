@@ -1,0 +1,168 @@
+﻿@model MoviePJ.ViewModels.Account.UserProfileClientVM
+@using MoviePJ.WebConfig.Consts
+@{
+	ViewBag.Title = "Profile";
+}
+
+@if (Context.User.Identity.IsAuthenticated)
+{
+	var roleId = Convert.ToInt32(Context.User.Claims.SingleOrDefault(c => c.Type.Contains(AppClaimTypes.RoleId))?.Value);
+
+	<div class="hero user-hero">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hero-ct">
+						@if (Model.FullName is null)
+						{
+							<h1>@Model.Username’s profile</h1>
+						}
+						else
+						{
+							<h1>@Model.FullName’s profile</h1>
+						}
+						<ul class="breadcumb">
+							<li class="active">
+								<a class="btn btn-default" asp-action="Index" asp-area="" asp-controller="Home">Home</a>
+							</li>
+							<li> <span class="ion-ios-arrow-right"></span>Profile</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="page-single">
+		<div class="container">
+			<div class="row ipad-width">
+				<div class="col-md-3 col-sm-12 col-xs-12">
+					<div class="user-information">
+						<div class="user-img">
+							<a class="avtLink" href="#">
+								<img src="@Model.Avatar" alt="" style="object-fit:cover"><br>
+							</a>
+							<a href="#" class="avtLink custom-btn btn-5">Change avatar</a>
+							<partial name="_ChangeAvt.cshtml" />
+						</div>
+						<div class="user-fav">
+							<p>Account Details</p>
+							<ul>
+								<li class="active"><a href="">Profile</a></li>
+								<li><a href="#tab-changePwd">Change Pasword</a></li>
+								@* <li><a href="userfavoritelist.html">Favorite movies</a></li> *@
+							</ul>
+						</div>
+						<div class="user-fav">
+							<p>Others</p>
+							<ul>
+								@if (roleId != AppConst.ROLE_CUSTOMER_ID)
+								{
+									<li>
+										<a asp-area="Admin" asp-controller="Home" asp-action="Index">
+											Web Managemet
+										</a>
+									</li>
+								}
+								<li><a asp-controller="Account" asp-action="Logout">Log out</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-9 col-sm-12 col-xs-12">
+					<div class="form-style-1 user-pro" action="#">
+						<form method="POST" class="user" asp-controller="Account" asp-action="UserProfile" asp-area="">
+							<h4>01. Profile details</h4>
+							<div class="row">
+								<div class="col-md-6 form-it">
+									<label>Username</label>
+									<input type="text" style="background-color: #1a2530;" placeholder="@Model.Username" disabled>
+								</div>
+
+								<div class="col-md-6 form-it">
+									<label>Email Address</label>
+									<input type="text" asp-for="Email" placeholder="@Model.Email...(*)">
+									<span asp-validation-for="Email" class="text-danger"></span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6 form-it">
+									<label>Full Name</label>
+									<input type="text" asp-for="FullName" placeholder="@Model.FullName...(*)">
+									<span asp-validation-for="FullName" class="text-danger"></span>
+								</div>
+
+								<div class="col-md-6 form-it">
+									<label>Phone Number 1</label>
+									<input type="text" asp-for="PhoneNumber1" placeholder="@Model.PhoneNumber1...(*)">
+									<span asp-validation-for="PhoneNumber1" class="text-danger"></span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6 form-it">
+									<label>Phone Number 2</label>
+									<input type="text" asp-for="PhoneNumber2" placeholder="@Model.PhoneNumber2...(*)">
+									<span asp-validation-for="PhoneNumber2" class="text-danger"></span>
+								</div>
+
+								<div class="col-md-6 form-it">
+									<label>Address</label>
+									<textarea asp-for="Address" placeholder="@Model.Address...(*)"></textarea>
+									<span asp-validation-for="Address" class="text-danger"></span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-2">
+									<button class="custom-btn btn-5" id="btn-profile" aria-label="button" type="submit">
+										Save change
+									</button>
+								</div>
+							</div>
+						</form>
+						<form id="tab-changePwd" method="POST" class="password" asp-controller="Account" asp-action="ChangePassword">
+							<h4>02. Change password</h4>
+							<div class="row">
+								<div class="col-md-6 form-it">
+									<label>Old Password</label>
+									<input type="password" asp-for="Pwd" placeholder="***************">
+									<span asp-validation-for="Pwd" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 form-it">
+									<label>New Password</label>
+									<input type="password" asp-for="NewPwd" placeholder="***************">
+									<span asp-validation-for="NewPwd" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 form-it">
+									<label>Confirm New Password</label>
+									<input type="password" asp-for="ConfirmPassword" placeholder="***************">
+									<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+								</div>
+							</div><div class="row">
+								<div class="col-md-6 form-it">
+									<input style="height: fit-content;" type="checkbox" checked asp-for="LogoutAfterChangePwd" aria-label="check"
+										   data-error="Please accept the conditions!"><span class="check-mask"></span>
+									<label style="height: fit-content;">
+										Log out after changing your password
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+									<button class="custom-btn btn-5" id="btn-profile" aria-label="button" type="submit">
+										Save change
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

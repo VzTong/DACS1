@@ -1,0 +1,26 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+
+@model IPagedList
+
+@{
+	string _params = "";
+	foreach (var item in Context.Request.Query)
+	{
+		if (item.Key != "page")
+		{
+			_params += $"&{item.Key}={item.Value}";
+		}
+	}
+}
+<div class="my-4 ml-7">
+@Html.PagedListPager(Model,
+	page => Url.Action("Index", new { page = page, area = "Admin" }) + _params,
+	new PagedListRenderOptions
+	{
+		LiElementClasses = new string[] { "page-item" },
+		PageClasses = new string[] { "page-link" },
+	})
+	<div class="mt-2 small font-italic">This list has a total of @Model.TotalItemCount records</div>
+</div>

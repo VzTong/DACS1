@@ -1,0 +1,16 @@
+﻿<select id="@ViewBag.For" name="@ViewBag.For"
+        asp-items="(MultiSelectList)ViewBag.filmStudio"
+        class="selectpicker form-control" title="Studios list..." multiple ata-live-search="true">
+    @if (ViewBag.AllowNull == true)
+    {
+        var ids = Model.SelectedFilmStudio?.Split(',').Select(int.Parse("")).ToList() ?? new List<int>();
+        if (ids.Contains(-1))
+        {
+            <option value="-1" disabled selected>There is no studio</option>
+        }
+        else
+        {
+            <option value="-1">There is no studio</option>
+        }
+    }
+</select>

@@ -1,0 +1,119 @@
+﻿@model IEnumerable<MoviePJ.Entities.AppGenres>
+
+<div class="col-md-12">
+	<div class="row text-center text-bold" data-header-flg="1" style="border-bottom: 1px solid #bebcbc;padding: 15px 0px;">
+		<div class="col-md-1">#</div>
+		<div class="col-md-2">Name</div>
+		<div class="col-md-4">Description</div>
+		<div class="col-md-2">Level</div>
+		<div class="col-md-2">Function</div>
+	</div>
+	@{
+		var index = 1;
+	}
+	@foreach (var item in Model)
+	{
+
+		<div class="js-row" data-id="@item.Id">
+			<div class="row mt-2 mb-2 align-items-center text-center cate-product-update-order"
+				 data-toggle="collapse" data-target="#collapseExample-@item.Id"
+				 aria-expanded="false"
+				 style="border-bottom: 1px solid #bebcbc; padding: 6px 0px;"
+				 aria-controls="collapseExample1"
+				 data-cate-displayorder="@item.DisplayOrder">
+				<div class="col-md-1 js-index">
+					@(index++)
+				</div>
+				<div class="col-md-2">
+					@item.Name
+				</div>
+				<div class="col-md-4" style="text-align: justify">
+					@item.Desc
+				</div>
+				<div class="col-md-2">
+					@item.CateLevel
+				</div>
+				<div class="col-md-3">
+					@if (User.IsInPermission(AuthConst.AppGenres.UPDATE))
+					{
+						<button class="btn btn-icon btn-outline-secondary btn-sm js-btn-reorder" title="Lên" data-type="up">
+							<i class="fas fa-arrow-up"></i>
+						</button>
+
+						<button class="btn btn-icon btn-outline-secondary btn-sm js-btn-reorder" title="Xuống" data-type="down">
+							<i class="fas fa-arrow-down"></i>
+						</button>
+						
+						<a asp-action="Edit" asp-route-id="@item.Id"
+						   class="btn btn-icon btn-outline-secondary btn-sm"><i class="fa-regular fa-pen-to-square"></i></a>
+					}
+					@if (User.IsInPermission(AuthConst.AppGenres.DELETE))
+					{
+						<a asp-action="Delete" asp-route-id="@item.Id"
+						   class="btn btn-icon btn-outline-danger btn-sm js-delete-confirm"
+						   data-msg="Confirm deletion of category ⌈ @item.Name ⌋?">
+							<i class="fa-regular fa-trash-can"></i>
+						</a>
+					}
+				</div>
+			</div>
+			@if (item.HasChild)
+			{
+				<div class="collapse" id="collapseExample-@item.Id">
+					<div style="margin: 0px 0px 0px 50px;">
+						@{
+							var rowindex = 1;
+						}
+						@if (item.ChildCategories.Count() > 0)
+						{
+							@foreach (var item1 in item.ChildCategories)
+							{
+								@if (item1.DeletedDate == null)
+								{
+									<div class="row mt-2 align-items-center text-center"
+										 data-toggle="collapse" data-target="#collapseExample-@item1.Id"
+										 aria-expanded="false"
+										 style="border-bottom: 1px solid #bebcbc; border-left: 1px solid #bebcbc; padding: 6px 0px; margin-left: 0px;"
+										 aria-controls="collapseExample1">
+										<div class="col-md-1">
+											@(rowindex++)
+										</div>
+										<div class="col-md-2" style="text-align: justify">
+											@item1.Name    <small>(@item1.AppGenresFilms.Where(s => s.DeletedDate == null).ToList().Count())</small>
+										</div>
+										<div class="mx-5 col-md-3" style="text-align: justify">
+											@item1.Desc
+										</div>
+										<div class="col-md-2">
+											@item1.CateLevel
+										</div>
+
+										<div class="col-md-2">
+											@if (User.IsInPermission(AuthConst.AppGenres.UPDATE))
+											{
+												<a asp-action="Edit" asp-route-id="@item1.Id"
+												   class="btn btn-icon btn-outline-secondary btn-sm"><i class="fa-regular fa-pen-to-square"></i></a>
+											}
+											@if (User.IsInPermission(AuthConst.AppGenres.DELETE))
+											{
+												<a asp-action="Delete" asp-route-id="@item1.Id"
+												   class="btn btn-icon btn-outline-danger btn-sm js-delete-confirm"
+												   data-msg="Confirm deletion of category ⌈ @item1.Name ⌋?">
+													<i class="fa-regular fa-trash-can"></i>
+												</a>
+											}
+										</div>
+									</div>
+								}
+							}
+						}
+					</div>
+				</div>
+			}
+		</div>
+	}
+	<div class="row" data-end-flg="1"></div>
+</div>
+
+
+

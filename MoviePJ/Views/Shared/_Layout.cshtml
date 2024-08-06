@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>MoviePJ - @ViewData["Title"]</title>
+
+	<!--Google Font-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:400,700,500%7CNunito:300,400,600" />
+	<!-- Mobile specific meta -->
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone-no">
+	<link rel="icon" href="~/images/Logo.jpg" type="image/x-icon" />
+	<link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+	<link href="~/css/plugins.css" rel="stylesheet" asp-append-version="true" />
+	<link href="~/css/plyr.css" rel="stylesheet" asp-append-version="true" />
+	<link href="~/css/style.css" rel="stylesheet" asp-append-version="true" />
+	@RenderSection("Css", false)
+</head>
+<body class="scroll-bar">
+	<!--preloading-->
+	<div id="preloader">
+		<img class="logo" src="~/images/Logo.jpg" alt="" width="219" height="158">
+		<div id="status">
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+	<!--end of preloading-->
+	<partial name="../Account/_Login.cshtml" />
+	<partial name="../Account/_Register.cshtml"/>
+
+	<partial name="_HeaderBar" />
+	 
+	@RenderBody()
+
+	<partial name="_Footer" />
+
+
+	<script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true" ></script>
+	@await Component.InvokeAsync("Notyf")
+	<script src="~/js/jquery.js" asp-append-version="true"></script>
+	<script src="~/js/plugins.js" asp-append-version="true"></script>
+	<script src="~/js/plugins2.js" asp-append-version="true"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/js/player.js" asp-append-version="true"></script>
+	<script src="~/js/custom.js" asp-append-version="true"></script>
+
+	@RenderSection("Scripts", false)
+</body>
+</html>

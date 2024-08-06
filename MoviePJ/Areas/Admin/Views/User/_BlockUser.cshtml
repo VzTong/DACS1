@@ -1,0 +1,22 @@
+﻿@model MoviePJ.Entities.AppUser
+<div>
+    <h1 hidden class="id-user">@Model.Id</h1>
+    <h4 class="js-name">You are blocking @Model.Username account</h4>
+    <hr />
+    <form>
+        <div class="form-group">
+            <label class="control-label">Locked to date</label>
+            <input name="BlockedTo" type="date" class="form-control js-date" />
+            <span class="text-danger js-message"></span>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+            <input class="form-check-input js-check" type="checkbox">
+                Permanently locked
+            </label>
+            <span class="text-danger js-message"></span>
+        </div>
+    </form>
+</div>
+
+

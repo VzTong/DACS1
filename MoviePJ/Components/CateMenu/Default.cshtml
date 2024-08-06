@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MoviePJ.Components.CateMenu.CateMenuViewModel>
+
+<div class="sub-menu">
+	<div class="outer-menu">
+		<div class="all-sub">
+			@foreach (var parent in Model)
+			{
+				<div class="item-sub">
+					<ul class="row">
+						<li class="col-sm-12"><span class="sub-name">@parent.Name</span></li>
+						@foreach (var child in parent.Childs)
+						{
+							<li class="col-sm-4">
+								<a asp-action="Index"
+								asp-area="" 
+								asp-controller="Film"
+								asp-route-slug="@child.Slug"
+								asp-route-filmid="@child.Id"
+								data-name="film-@child.Id" data-title="@child.Name"
+								   data-description="" data-keyword="">@child.Name</a>
+							</li>
+						}
+
+					</ul>
+				</div>
+			}
+
+		</div>
+	</div>
+</div> 

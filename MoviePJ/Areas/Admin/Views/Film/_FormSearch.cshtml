@@ -1,0 +1,51 @@
+﻿@using System.Linq
+
+@{
+	var classShowCollapse = "show";
+	if (String.IsNullOrEmpty(ViewBag.FilmName) && ViewBag.CateId == null && ViewBag.IsYear == null)
+	{
+		classShowCollapse = "";
+	}
+}
+
+<div class="collapse @classShowCollapse" id="collapseExample">
+	<div class="card">
+		<section class="content">
+			<div class="card-body">
+				<form class="form-horizontal">
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label for="FilmName" class="control-label">Film name</label>
+							<input id="FilmName" name="FilmName" type="text" class="form-control" value="@ViewBag.FilmName" />
+						</div>
+						<div class="form-group col-md-3">
+							<label for="CateId" class="control-label">Genres</label>
+							<select asp-items="(SelectList)ViewBag.Genre" name="CateId"
+									class="select-status form-control" title="Genres">
+									<option value="" selected>Select a value</option>
+							</select>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="ReleaseYear" class="control-label">Release year</label>
+							<select asp-items="(SelectList)ViewBag.IsYears" name="ReleaseYear"
+									class="bs-autocomplete" title="ReleaseYear">
+							</select>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="StatusId" class="control-label">Status</label>
+							<select asp-items="(SelectList)ViewBag.IsStatus" name="StatusId"
+									class="bs-autocomplete" title="Status">
+							</select>
+						</div>
+						<div class="col-12">
+							<div class="form-group">
+								<button type="submit" class="btn btn-success"><i class="fa fa-save mr-1"></i> Search</button>
+								<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Retype</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</section>
+	</div>
+</div>

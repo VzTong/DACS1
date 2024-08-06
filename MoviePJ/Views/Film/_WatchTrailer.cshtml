@@ -1,0 +1,23 @@
+﻿@model MoviePJ.ViewModels.Film.FilmVM
+
+@section scripts {
+	<partial name="_Validation" />
+}
+
+<!--change avt form popup-->
+<div class="login-wrapper" id="trailer-content">
+	<div class="login-content" style="width: 750px;">
+		<a href="#" class="close">x</a>
+		<h3>Watch Trailer</h3>
+		<div >
+			<div class="anime__video__player">
+				<video id="player" playsinline control>
+					<source src="/@Model.TrailerPath" type="video/mp4" />
+					<!-- Captions are optional -->
+					<track kind="captions" label="English captions" src="#" srclang="en" default />
+				</video>
+			</div>
+		</div>
+	</div>
+</div>
+<!--end of change avt form popup-->

@@ -1,0 +1,209 @@
+﻿@model IEnumerable<MoviePJ.Areas.Admin.ViewModels.FilmActor.ListItemActorsVM>
+@{
+	ViewData["Title"] = "List of film actor";
+}
+
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="m-b-10 mt-5">Actors manager Page</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a href="#!">Actors manager Page</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- [ breadcrumb ] end -->
+<!-- [ Main Content ] start -->
+<div class="card">
+	<div class="card-header">
+		<h5>Actors manager</h5>
+	</div>
+	@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppActor.VIEW_LIST))
+	{
+
+		@if (User.IsInPermission(AuthConst.AppActor.CREATE))
+		{
+			<div class="ml-3 d-flex">
+				<div class="my-2 mr-2">
+					<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addActor" onclick="openPopup(event)">
+						<i class="fas fa-book-medical"></i> &nbsp; Add new
+					</button>
+				</div>
+			</div>
+		}
+
+		<div class="card-body table-border-style">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th class="col-1">#</th>
+							<th class="col-2">Avatar</th>
+							<th class="col-3">FullName</th>
+							<th class="col-3"></th>
+						</tr>
+					</thead>
+					<tbody style="text-align: center">
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>@item.RowIndex</td>
+								<td>
+									<img src="/@item.Avatar" width="150px" height="200px" style="object-fit:cover" />
+								</td>
+								<td>@item.FullName</td>
+								<td style="text-align: center">
+									@if (User.IsInPermission(AuthConst.AppActor.UPDATE))
+									{
+										<button class="btn btn-icon btn-outline-secondary"
+												type="button"
+												data-toggle="modal" data-target="#updateActor"
+												onclick="UpdateActor('@item.FullName', '@item.Avatar', @item.Id)">
+											<i class="fa-regular fa-pen-to-square"></i>
+										</button>
+									}
+
+									@if (User.IsInPermission(AuthConst.AppActor.DELETE))
+									{
+										<a asp-action="Delete" asp-route-id="@item.Id"
+										   class="btn btn-icon btn-outline-danger btn-sm js-delete-confirm"
+										   data-msg="Confirm deletion of Actor ⌈ @item.FullName ⌋?">
+											<i class="fa-regular fa-trash-can"></i>
+										</a>
+									}
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div style=" margin-left: 4rem !important;">
+			<partial name="_Pager" />
+		</div>
+	}
+	else
+	{
+		<h3 class="p-3 text-center;" style="color: #00acc1; cursor: context-menu;">You don't have permission!</h3>
+	}
+</div>
+
+
+<!-- Modal -->
+<!-- Add -->
+<div id="addActor" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addActor" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="addActor">Add Actor</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+
+			<form asp-action="AddActor" asp-controller="Actor" asp-area="Admin" method="POST" enctype="multipart/form-data">
+				<input type="hidden" id="idActor" name="Id" />
+				<div class="modal-body ml-4 col-sm-12 justify-content-center align-items-center" style="display:flex">
+					<input type="text" name="FullName" class="form-control col-8 col-sm-6" placeholder="FullName actor" />
+					<div class="position-relative col-8 col-sm-6">
+						<div style="opacity: 1">
+							<div class="text-center justify-content-center align-items-center" style="border: dotted 2px rgb(139, 139, 139);  width: 150px; height: 200px">
+								<img id="imagePreview" src="/" alt="" style="width: 145px; height: 196px;object-fit:cover; display: none">
+								<i id="iconPreview" class="fas fa-cloud-upload-alt" style="font-size: 90px; color: rgb(10, 176, 202); margin-top:40px"></i>
+							</div>
+							<input name="AvatarUpload" class="form-control border border-secondary position-absolute" type="file" id="fileInput" style="width: 150px; height: 200px; opacity: 0; top: 0" />
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">Save</button>
+					<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Retype</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+<!-- Edit -->
+<div id="updateActor" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="updateActor" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="updateActor">Edit Actor</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+
+			<form asp-action="UpdateActor" asp-controller="Actor" asp-area="Admin" method="POST" enctype="multipart/form-data">
+				<input type="hidden" value="" id="idEdit" name="Id" />
+				<div class="modal-body ml-4 col-sm-12 justify-content-center align-items-center" style="display:flex">
+					<input type="text" id="fullName" name="FullName" value="" class="form-control col-8 col-sm-6" placeholder="FullName actor" />
+					<div class="position-relative col-8 col-sm-6">
+						<div style="opacity: 1">
+							<div class="text-center justify-content-center align-items-center" style="border: dotted 2px rgb(139, 139, 139);  width: 150px; height: 200px">
+								<img id="avatar" name="Avatar" src="/" alt="" style="width: 145px; height: 196px;object-fit:cover;">
+							</div>
+							<input name="AvatarUpload" class="form-control border border-secondary position-absolute" type="file" id="fileInput2" style="width: 150px; height: 200px; opacity: 0; top: 0" value="" />
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">Save</button>
+					<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Retype</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+	const fileInput = document.getElementById('fileInput');
+	const fileInput2 = document.getElementById('fileInput2');
+	const imagePreview = document.getElementById('imagePreview');
+	const avatar = document.getElementById('avatar');
+	const iconPreview = document.getElementById('iconPreview');
+
+	fileInput.addEventListener('change', function (ev) {
+		const file = fileInput.files[0];
+		if (file) {
+			imagePreview.style.display = 'block'; // Hiển thị thẻ img
+			iconPreview.style.display = 'none'; // Ẩn thẻ img
+			imagePreview.src = URL.createObjectURL(file);
+		}
+	});
+
+	fileInput2.addEventListener('change', function (ev) {
+		const file = fileInput2.files[0];
+		if (file) {
+			avatar.src = URL.createObjectURL(file);
+		}
+	});
+
+	function UpdateActor(fullname, avatar, idActor) {
+		document.getElementById('fullName').value = fullname;
+		document.getElementById('avatar').src = "/" + avatar;
+		document.getElementById('idEdit').value = idActor;
+	}
+
+</script>
+
+
+@section scripts {
+
+	<link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
+	<link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+	<link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
+	<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+	<script src="~/lib/elfinder/js/elfinder.min.js"></script>
+	<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/js/film_genre/film_genre.js" asp-append-version="true"></script>
+}

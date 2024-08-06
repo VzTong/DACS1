@@ -1,0 +1,117 @@
+﻿@model IEnumerable<MoviePJ.ViewModels.Film.FilmVM>
+@{
+	ViewBag.Title = "Movie list";
+}
+
+<div class="hero common-hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hero-ct">
+					<h1>Movie listing - list</h1>
+					<ul class="breadcumb">
+						<li class="active"><a asp-action="Index" asp-area="" asp-controller="Home">Home</a></li>
+						<li> <span class="ion-ios-arrow-right"></span> Movie listing</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="page-single movie_list">
+	<div class="container">
+		<div class="row ipad-width2">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="topbar-filter">
+					<p>Found <span>@ViewBag.movieTotal</span> <span>movies</span> in total</p>
+					
+					<a asp-controller="Film" asp-action="MovieList" class="list"><i class="ion-ios-list-outline active"></i></a>
+					<a asp-controller="Film" asp-action="MovieGrid" class="grid"><i class="ion-grid"></i></a>
+				</div>
+				@foreach (var films in Model)
+				{
+					<div class="movie-item-style-2">
+						@if (films.Cover == null || films.Cover == "")
+						{
+							<img src="/images/img_err.png" alt="@films.Name" style="width: 193px; height: 296px; object-fit:cover">
+						}
+						else
+						{
+							<img src="@films.Cover" alt="@films.Name" style="width: 193px; height: 296px; object-fit:cover">
+						}
+						<div class="mv-item-infor">
+							<h6>
+								<a asp-area="" asp-controller="Film"
+								   asp-action="FilmDetail"
+								   asp-route-slug="@films.Slug"
+								   asp-route-filmId="@films.Id">
+
+									@films.Name <span>(@films.ReleaseYear)</span>
+								</a>
+							</h6>
+							<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							<p class="describe">@films.Desc</p>
+
+							@if (Convert.ToInt32(films.Time) % 60 != 0)
+							{
+								int temp = Convert.ToInt32(films.Time) % 60;
+								films.Time = films.Time / 60;
+
+								<p class="run-time">
+									Run Time:  @films.Time h @temp’    .
+									<span>
+										Genres:
+										@foreach (var genresName in films.GenresName)
+										{
+											<span>	@genresName |</span>
+										}
+									</span>
+								</p>
+
+							}
+							else
+							{
+								<p class="run-time">
+									Run Time:  @films.Time’    .
+									<span>
+										Genres:
+										@foreach (var genresName in films.GenresName)
+										{
+											<span>	@genresName |</span>
+										}
+									</span>
+								</p>
+							}
+							<p>
+								Film maker:
+								@foreach (var filmmaker in films.Filmmaker)
+								{
+									<a href="#"> @filmmaker.FullName |</a>
+								}
+							</p>
+							<p>
+								Actor:
+								@foreach (var actor in films.Actor)
+								{
+									<a href="#"> @actor.FullName |</a>
+								}
+							</p>
+							<p>
+								Studio:
+								@foreach (var studio in films.Studio)
+								{
+									<a href="#"> @studio.Name |</a>
+								}
+							</p>
+						</div>
+					</div>
+				}
+				<div class="topbar-filter">
+					<label>Movies per page:</label>
+
+					<partial name="../Shared/_PagerMovieList.cshtml" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

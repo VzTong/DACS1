@@ -1,0 +1,72 @@
+﻿@model MoviePJ.Areas.Admin.ViewModels.FilmGenres.AddOrUpdateFilmGenreVM
+@{
+	ViewData["Title"] = "List of film genres";
+}
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="m-b-10 mt-5">Genres manager Page</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a href="#!">Genres manager Page</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ breadcrumb ] end -->
+<!-- [ Main Content ] start -->
+<div class="card">
+	<div class="card-header">
+		<h5>Genres manager</h5>
+	</div>
+	@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppGenres.VIEW_LIST))
+	{
+		<div class="card-body">
+			@if (User.IsInPermission(AuthConst.AppGenres.CREATE))
+			{
+				<div class="mb-3">
+					<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+						<i class="fas fa-book-medical"></i> &nbsp; Create new
+					</button>
+				</div>
+				<div class="collapse" id="collapseExample">
+					<div class="card card-body">
+						<form asp-action="Index" method="post" asp-controller="Genre">
+							<partial name="_AddOrUpdateGenre" model="Model" />
+							<div class="form-group">
+								<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+								<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Retype</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			}
+
+			@await Component.InvokeAsync("SelectListFilmGenre")
+
+		</div>
+	}
+	else
+	{
+		<h3 class="p-3 text-center;" style="color: #00acc1; cursor: context-menu;">You don't have permission!</h3>
+	}
+
+</div>
+
+@section scripts {
+	<link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
+	<link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+	<link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
+	<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+	<script src="~/lib/elfinder/js/elfinder.min.js"></script>
+	<script src="~/js/file-news-manager/news_file_manager.js"></script>
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+	<script src="~/js/film_genre/film_genre.js" asp-append-version="true"></script>
+}

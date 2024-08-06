@@ -1,0 +1,22 @@
+﻿<form method="POST" asp-controller="Account" asp-action="Register" id="cart-info" autocomplete="off" name="user-info">
+	<div asp-validation-summary="ModelOnly" class="text-danger fst-italic small"></div>
+
+	<div class="row user-box">
+		<input type="text" name="Username" required="">
+		<label>Username</label>
+	</div>
+
+	<div class="row user-box">
+		<input type="password" name="Password" required="">
+		<label>Password</label>
+	</div>
+
+	<div class="row user-box">
+		<input type="password" name="ConfirmPwd" required="">
+		<label>Confirm Password</label>
+	</div>
+
+	<div class="row">
+		<button class="custom-btn btn-5" type="submit" style="margin-top: 10px; width: 100%">Register</button>
+	</div>
+</form>

@@ -1,0 +1,247 @@
+﻿@model IEnumerable<MoviePJ.Areas.Admin.ViewModels.Film.ListItemFilmVM>
+@using MoviePJ.WebConfig.Consts
+
+@{
+	ViewData["Title"] = "List of films";
+}
+
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="m-b-10 mt-5">Film manager Page</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a href="#!">Film manager Page</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ breadcrumb ] end -->
+<!-- [ Main Content ] start -->
+<div class="card">
+	<div class="card-header">
+		<h5>Film manager</h5>
+	</div>
+	@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppFilm.VIEW_LIST))
+	{
+
+		<div class="ml-3 d-flex">
+			@if (User.IsInPermission(AuthConst.AppFilm.CREATE))
+			{
+				<div class="my-2 mr-2">
+					<a asp-action="Create" class="btn btn-primary">
+						<i class="fas fa-book-medical"></i> &nbsp; Create film
+					</a>
+				</div>
+			}
+			<div class="my-2 mr-2">
+				<button class="btn btn-success" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+					<i class="fas fa-search"></i> &nbsp; Search
+				</button>
+			</div>
+
+			@if (User.IsInPermission(AuthConst.AppFilm.DELETE))
+			{
+				<div class="my-2 mr-2">
+					<div class="btn btn-light">
+						<div class="custom-control custom-switch">
+							<input id="chkAllowBulkDel" type="checkbox" class="custom-control-input">
+							<label for="chkAllowBulkDel" class="custom-control-label form-check-label hover:pointer">Allows multiple deletion</label>
+						</div>
+					</div>
+				</div>
+				<div class="my-2 mr-2">
+					<button id="btnBulkDel" class="d-none btn btn-outline-danger"
+							data-keyword="film"
+							data-url="/Admin/Film/BulkDelete">
+						Bulk delete (<span id="delCount">0</span> films)
+					</button>
+				</div>
+			}
+		</div>
+		<div class="card-body table-border-style">
+			<partial name="_FormSearch" />
+			<div class="table-responsive">
+				<table class="table table-bordered" style="text-align: justify">
+					<thead style="text-align: center">
+						<tr>
+							<th class="js-col-checkbox d-none">
+								<input id="chkAll" type="checkbox" style="transform: scale(1.5)" />
+								<label for="chkAll" class="position-absolute top-left hover:pointer"></label>
+							</th>
+							<th >#</th>
+							<th style="width: 175px">Cover</th>
+							<th style="width: 300px">Name</th>
+							<th style="width: 350px">Description</th>
+							<th style="width: 100px">Release Year</th>
+							<th style="width: 120px">Status</th>
+							<th style="width: 80px"></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td class="fit js-col-checkbox d-none position-relative">
+									<input id="chk@(item.Id)" type="checkbox" data-id="@item.Id" style="transform: scale(1.5)" />
+									<label for="chk@(item.Id)" class="position-absolute w-100 h-100 top-left hover:pointer"></label>
+								</td>
+								<td class="fit" style="cursor: default; text-align: center">
+									@item.RowIndex
+								</td>
+								<td>
+									@{
+										if (item.Cover != null)
+										{
+											<img src="/@item.Cover" width="150px" height="200px" style="object-fit:cover" />
+										}
+										else
+										{
+											<img src="~/images/img_err.png" style=" width: 50px;height: 50px;object-fit: cover;" />
+										}
+									}
+								</td>
+								<td>
+									<div>
+										@if (item.IsActive)
+										{
+											<i class="fas fa-globe text-secondary"></i>
+										}
+										else
+										{
+											<i class="fas fa-lock text-secondary"></i>
+										}
+										@if (item.GenresName.IsNullOrEmpty())
+										{
+											<div class="badge badge-pill badge-light-secondary" style="cursor: default;">Không có danh mục</div>
+										}
+										else
+										{
+											<spam class="badge badge-pill badge-info" style="cursor: default;">
+												@string.Join(" - ", item.GenresName)
+											</spam>
+										}
+										
+										@if (item.DisplayOrder != null)
+										{
+											<span title="Đã ghim" class="ml-1 text-secondary small" style="cursor: default;">
+												<i class="fas fa-thumbtack"></i>
+											</span>
+										}
+									</div>
+									<span style="color: #1abc9c; font-size: 150%; cursor: default;">@item.Name</span>
+									<environment names="Development">
+										<small class="text-danger" style="cursor: default;">(id @item.Id)</small>
+									</environment>
+									@if (item.IsActive)
+									{
+										<a class="text-info ml-1" target="_blank" 
+											asp-area="" asp-controller="Film"
+											asp-action="FilmDetail"
+										   asp-route-slug="@item.Slug"
+										   asp-route-filmId="@item.Id">
+
+										   <i class="fas fa-external-link-alt text-info"></i>
+									   </a>
+									}
+									<br />
+									<p class="badge badge-light-secondary" style="cursor: default;text-align: left">@item.AnotherName</p>
+								</td>
+								<td style="cursor: default;text-align: justify">@item.Desc</td>
+								<td style="text-align: center; cursor: default;">@item.ReleaseYear</td>
+								<td>
+									@{
+										if (item.StatusName == AppConst.STATUS_IN_PROGRESS)
+										{
+											<span class="badge badge-warning" style="text-align: center; font-size: 100%; cursor: default;">@item.StatusName</span>
+										}
+										else if (item.StatusName == AppConst.STATUS_FINIDHED)
+										{
+											<span class="badge badge-success" style="text-align: center; font-size: 100%; cursor: default;">@item.StatusName</span>
+										}
+									}
+								</td>
+								<td class="fit" style="text-align: center">
+									@{
+										if (User.IsInPermission(AuthConst.AppFilm.UPDATE))
+										{
+											if (item.DisplayOrder == null)
+											{
+												<a title="Pin the film to the top of the page" asp-action="filmPin" asp-route-id="@item.Id"
+												   class="btn btn-icon btn-outline-secondary btn-sm mb-2"><i class="fas fa-arrow-alt-circle-up"></i></a>
+											}
+											else
+											{
+												<a title="Unpin the film" asp-action="filmUnPin" asp-route-id="@item.Id"
+												   class="btn btn-icon btn-light btn-sm"><i class="fas fa-arrow-alt-circle-down"></i></a>
+											}
+											<a asp-action="Update" asp-route-id="@item.Id"
+											   class="btn btn-icon btn-outline-secondary btn-sm mb-2"><i class="fa-regular fa-pen-to-square"></i></a>
+										}
+										if (item.IsActive)
+										{
+											if (User.IsInPermission(AuthConst.AppFilm.UNPUBLIC))
+											{
+												<a asp-action="UnPublicfilm" asp-route-id="@item.Id"
+												   title="Unpublic film"
+												   class="btn btn-icon btn-outline-secondary btn-sm mb-2 js-delete-confirm"
+												   data-msg="Confirm hiding film ⌈ @item.Name ⌋ from the system?">
+													<i class="fas fa-lock"></i>
+												</a>
+											}
+										}
+										else
+										{
+											if (User.IsInPermission(AuthConst.AppFilm.PUBLIC))
+											{
+												<a asp-action="Publicfilm" asp-route-id="@item.Id"
+												   title="Public film"
+												   class="btn btn-icon btn-outline-secondary btn-sm mb-2 js-delete-confirm"
+												   data-msg="Publicly confirm film ⌈ @item.Name ⌋ ?">
+													<i class="fas fa-globe"></i>
+												</a>
+											}
+										}
+										if (User.IsInPermission(AuthConst.AppFilm.DELETE))
+										{
+											<a asp-action="Delete" asp-route-id="@item.Id"
+											   class="btn btn-icon btn-outline-danger btn-sm mb-2 js-delete-confirm"
+											   data-msg="Confirm deletion of film ⌈ @item.Name ⌋ ?"><i class="fa-regular fa-trash-can"></i></a>
+										}
+									}
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div style=" margin-left: 4rem !important;">
+			<partial name="_Pager" />
+		</div>
+	}
+	else
+	{
+		<h3 class="p-3 text-center;" style="color: #00acc1; cursor: context-menu;">You don't have permission!</h3>
+	}
+
+</div>
+
+@section Scripts {
+	<link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
+	<link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+	<link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
+	<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+	<script src="~/lib/elfinder/js/elfinder.min.js"></script>
+	<script src="~/js/file-news-manager/news_file_manager.js"></script>
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+	<script src="~/js/searchsuggestions.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,26 @@
+﻿@model MoviePJ.Areas.Admin.ViewModels.FilmGenres.AddOrUpdateFilmGenreVM
+
+@{
+    var disable = Model is null ? "" : "selected-disbles";
+}
+
+
+<select asp-for="ParentCateId" class="bs-autocomplete form-control @disable" title="ProductCategory">
+    @if (Model is null)
+    {
+        <option class="text-danger" value="-1">No has</option>
+    }
+    else
+    {
+        if (Model.ParentCateId == null)
+        {
+            <option class="text-danger" selected value="-1">No has</option>
+        }
+    }
+    @{
+        foreach (var item in ViewBag.filmGenre.Items)
+        {
+            <option class="text-primary" value="@item.Id">@item.Name</option>
+        }
+    }
+</select>

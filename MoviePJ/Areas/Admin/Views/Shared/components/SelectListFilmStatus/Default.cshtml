@@ -1,0 +1,16 @@
+﻿<select id="@ViewBag.For" name="@ViewBag.For"
+		asp-items="(SelectList)ViewBag.filmStatus"
+		class="bs-autocomplete form-control" title="Status...">
+	@if (ViewBag.AllowNull == true)
+	{
+		var id = Convert.ToInt32(Context.Request.Query[ViewBag.For]);
+		if (id == -1)
+		{
+			<option value="-1" selected>There is no status</option>
+		}
+		else
+		{
+			<option value="-1">There is no status</option>
+		}
+	}
+</select>

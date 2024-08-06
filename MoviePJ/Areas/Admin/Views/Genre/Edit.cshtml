@@ -1,0 +1,61 @@
+﻿@model MoviePJ.Areas.Admin.ViewModels.FilmGenres.AddOrUpdateFilmGenreVM
+@{
+	ViewData["Title"] = $"Update genre ⌈ {Model.Name} ⌋";
+}
+
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="m-b-10 mt-5">Genres manager Page</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a asp-controller="Genre" asp-action="Index" asp-area="Admin">Genres manager Page</a></li>
+					<li class="breadcrumb-item"><a href="#!">Page update genre</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ breadcrumb ] end -->
+
+<div class="card">
+	<div class="card-header">
+		<h5>Update ⌈ @Model.Name ⌋ genre</h5>
+	</div>
+	@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppGenres.VIEW_LIST))
+	{
+		<div class="card-body">
+
+			<div class="row">
+				<div class="col-md-12">
+					<form asp-action="Edit" method="post">
+						<partial name="_AddOrUpdateGenre" model="Model" />
+						<div class="form-group">
+							<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save </button>
+							<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Retype</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	}
+	else
+	{
+		<h3 class="p-3 text-center;" style="color: #00acc1; cursor: context-menu;">You don't have permission!</h3>
+	}
+	<partial name="_BackToList" />
+</div>
+
+
+@section scripts {
+	<link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+	<link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
+	<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+	<script src="~/lib/elfinder/js/elfinder.min.js"></script>
+	<script src="~/js/film_genre/film_genre.js" asp-append-version="true"></script>
+}

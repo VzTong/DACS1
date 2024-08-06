@@ -1,0 +1,245 @@
+﻿@using MoviePJ.Common
+@{
+	ViewData["Title"] = "Home Page";
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="m-b-10 mt-5">Dashboard Analytics</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a href="#!">Dashboard Analytics</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ breadcrumb ] end -->
+<!-- [ Main Content ] start -->
+<div class="row">
+	<!-- table card-1 start -->
+	<div class="col-md-12 col-xl-4">
+		<div class="card card-animate">
+			<div class="card-body">
+				<div class="d-flex align-items-center">
+					<div class="flex-grow-1 overflow-hidden">
+						<p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+							Total genres
+						</p>
+					</div>
+				</div>
+				<div class="d-flex align-items-end justify-content-between ">
+					<div>
+						<h4>@ViewBag.CountGenre</h4>
+                        @if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppGenres.VIEW_LIST))
+                        {
+							<a asp-action="Index" asp-controller="Genre" asp-area="Admin">
+								See more
+								<i class="fas fa-arrow-circle-right"></i>
+							</a>
+						}
+						else
+						{
+							<span style="color: #bfece3; cursor: context-menu;">You don't have permission!</span>
+						}
+					</div>
+					<div class="icon-db-genre">
+						<i class="fas fa-solid fa-table-list"></i>
+					</div>
+				</div>
+			</div><!-- end card body -->
+		</div><!-- end card -->
+	</div>
+	<!-- table card-1 end -->
+	<!-- table card-2 start -->
+	<div class="col-md-12 col-xl-4">
+		<div class="card card-animate">
+			<div class="card-body">
+				<div class="d-flex align-items-center">
+					<div class="flex-grow-1 overflow-hidden">
+						<p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+							Total films
+						</p>
+					</div>
+				</div>
+				<div class="d-flex align-items-end justify-content-between ">
+					<div>
+						<h4>@ViewBag.CountFilm</h4>
+						@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppFilm.VIEW_LIST))
+                        {
+							<a asp-action="Index" asp-controller="Film" asp-area="Admin" class="text-decoration-underline">
+								See more
+								<i class="fas fa-arrow-circle-right"></i>
+							</a>
+						}
+						else
+						{
+							<span style="color: #bfece3; cursor: context-menu;">You don't have permission!</span>
+						}
+					</div>
+					<div class="icon-db-play">
+						<i class="fa-brands fa-google-play"></i>
+					</div>
+				</div>
+			</div><!-- end card body -->
+		</div><!-- end card -->
+	</div>
+	<!-- table card-2 end -->
+	<!-- table card-3 start -->
+	<div class="col-md-12 col-xl-4">
+		<div class="card card-animate">
+			<div class="card-body">
+				<div class="d-flex align-items-center">
+					<div class="flex-grow-1 overflow-hidden">
+						<p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+							Total users
+						</p>
+					</div>
+				</div>
+				<div class="d-flex align-items-end justify-content-between ">
+					<div>
+						<h4>@ViewBag.CountUser</h4>
+						@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppUser.VIEW_LIST))
+						{
+							<a asp-action="Index" asp-controller="User" asp-area="Admin" class="text-decoration-underline">
+								See more
+								<i class="fas fa-arrow-circle-right"></i>
+							</a>
+						}
+						else
+						{
+							<span style="color: #bfece3; cursor: context-menu;">You don't have permission!</span>
+						}
+					</div>
+					<div class="icon-db-user">
+						<i class="fas fa-solid fa-users"></i>
+					</div>
+				</div>
+			</div><!-- end card body -->
+		</div><!-- end card -->
+	</div>
+	<!-- table card-3 end -->	
+	<!-- table card-4 start -->
+	<div class="col-md-12 col-xl-4">
+		<div class="card card-animate">
+			<div class="card-body">
+				<div class="d-flex align-items-center">
+					<div class="flex-grow-1 overflow-hidden">
+						<p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+							Total actors
+						</p>
+					</div>
+				</div>
+				<div class="d-flex align-items-end justify-content-between ">
+					<div>
+						<h4>@ViewBag.CountActor</h4>
+						@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppActor.VIEW_LIST))
+						{
+							<a asp-action="Index" asp-controller="Actor" asp-area="Admin" class="text-decoration-underline">
+								See more
+								<i class="fas fa-arrow-circle-right"></i>
+							</a>
+						}
+						else
+						{
+							<span style="color: #bfece3; cursor: context-menu;">You don't have permission!</span>
+						}
+					</div>
+					<div class="icon-db-actor">
+						<i class="fa-solid fa-person-through-window"></i>
+					</div>
+				</div>
+			</div><!-- end card body -->
+		</div><!-- end card -->
+	</div>
+	<!-- table card-4 end -->	
+	<!-- table card-5 start -->
+	<div class="col-md-12 col-xl-4">
+		<div class="card card-animate">
+			<div class="card-body">
+				<div class="d-flex align-items-center">
+					<div class="flex-grow-1 overflow-hidden">
+						<p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+							Total filmmakers
+						</p>
+					</div>
+				</div>
+				<div class="d-flex align-items-end justify-content-between ">
+					<div>
+						<h4>@ViewBag.CountFilmmaker</h4>
+						@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppMaker.VIEW_LIST))
+						{
+							<a asp-controller="Maker" asp-action="Index" asp-area="Admin" class="text-decoration-underline">
+								See more
+								<i class="fas fa-arrow-circle-right"></i>
+							</a>
+						}
+						else
+						{
+							<span style="color: #bfece3; cursor: context-menu;">You don't have permission!</span>
+						}
+					</div>
+					<div class="icon-db-filmmaker">
+						<i class="fa-solid fa-file-signature"></i>
+					</div>
+				</div>
+			</div><!-- end card body -->
+		</div><!-- end card -->
+	</div>
+	<!-- table card-5 end -->
+	<!-- table card-6 start -->
+	<div class="col-md-12 col-xl-4">
+		<div class="card card-animate">
+			<div class="card-body">
+				<div class="d-flex align-items-center">
+					<div class="flex-grow-1 overflow-hidden">
+						<p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+							Total studio
+						</p>
+					</div>
+				</div>
+				<div class="d-flex align-items-end justify-content-between ">
+					<div>
+						<h4>@ViewBag.CountStudio</h4>
+						@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppStudio.VIEW_LIST))
+						{
+							<a asp-action="Index" asp-controller="Studio" asp-area="Admin" class="text-decoration-underline">
+								See more
+								<i class="fas fa-arrow-circle-right"></i>
+							</a>
+						}
+						else
+						{
+							<span style="color: #bfece3; cursor: context-menu;">You don't have permission!</span>
+						}
+					</div>
+					<div class="icon-db-studio">
+						<i class="fa-brands fa-dropbox"></i>
+					</div>
+				</div>
+			</div><!-- end card body -->
+		</div><!-- end card -->
+	</div>
+	<!-- table card-6 end -->
+</div>
+
+<div class="row">
+	<div class="col-md-12 col-xl-12" style="object-fit: cover;">
+		<div class="card bg-dark">
+			<img class="img-fluid card-img" src="~/AdminTLE/cloneForm/images/bg-title.jpg" alt="Card image" style="object-fit: cover;height: 220px;">
+			<div class="card-img-overlay" style="background-color: rgba(0, 0, 0, 0.5);">
+				<h1 class="card-title text-white">Films Website</h1>
+				<p class="card-text text-white" style="font-size: 17px;">
+					Enter the World of Entertainment: Optimize Movie Website Management with Just a Few Clicks!
+				</p>
+				<p class="card-text text-white">Website information management system</p>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ Main Content ] end -->

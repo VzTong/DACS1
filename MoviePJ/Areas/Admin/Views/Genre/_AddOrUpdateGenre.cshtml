@@ -1,0 +1,31 @@
+﻿@model MoviePJ.Areas.Admin.ViewModels.FilmGenres.AddOrUpdateFilmGenreVM
+
+<div class="row">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="ParentCateId" class="control-label">Parent Cate</label>
+            
+            @await Component.InvokeAsync("SelectListFilmGenreComponent", new { filmGenre = @Model })
+
+            <span asp-validation-for="ParentCateId" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label asp-for="Desc" class="control-label">Description</label>
+    <textarea rows="4" class="form-control" asp-for="Desc"></textarea>
+    <span asp-validation-for="Desc" class="text-danger"></span>
+</div>
+
+
+
+

@@ -1,0 +1,90 @@
+﻿@using MoviePJ.WebConfig.Consts
+@model MoviePJ.Areas.Admin.ViewModels.Role.RoleEditVM
+
+@{
+	ViewData["Title"] = $"Update role ⌈ {Model.Name} ⌋";
+}
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="m-b-10 mt-5">Role manager Page</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a asp-controller="Role" asp-action="Index" asp-area="Admin">Role manager Page</a></li>
+					<li class="breadcrumb-item"><a href="#!">Page update role</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ breadcrumb ] end -->
+
+<div class="card">
+	<div class="card-header">
+		<h5>Update role ⌈ @Model.Name ⌋</h5>
+	</div>
+
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-12">
+				<form asp-action="Edit" method="post">
+					<div class="row">
+						<div class="col-md-12">
+							<h5 class="my-3">Role information</h5>
+							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+							<input asp-for="PermissionIds" class="fake-d-none" />
+							<input asp-for="DeletedPermissionIds" class="fake-d-none" data-val="true" data-val-deleteAllPermission="@VM.RoleVM.PERMISSION_IDS_REQUIRED_ERR_MESG" />
+							<input asp-for="AddedPermissionIds" class="fake-d-none" />
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="Name" class="control-label">Name role</label>
+										<input asp-for="Name" class="form-control" />
+										<span asp-validation-for="Name" class="text-danger"></span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="Desc" class="control-label">Description</label>
+										<input asp-for="Desc" class="form-control" />
+										<span asp-validation-for="Desc" class="text-danger"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 my-3">
+							<h5>Actions allowed</h5>
+							<span asp-validation-for="DeletedPermissionIds" class="text-danger"></span>
+						</div>
+
+						@await Component.InvokeAsync("Permission")
+					</div>
+					<div class="row">
+						<div class="col">
+							<p class="font-italic">
+								<span class="text-danger text-bold">*</span>
+								Accounts in this role need to log in again to update changes
+							</p>
+							<div class="form-group">
+								<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save </button>
+								<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Retype</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<partial name="_BackToList" />
+</div>
+
+
+@section scripts {
+	<script src="~/lib/masonry/masonry.pkgd.min.js"></script>
+	<script src="~/js/role/create-edit-role.js" asp-append-version="true"></script>
+}

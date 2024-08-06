@@ -1,0 +1,26 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+
+@model IEnumerable<object>
+
+@{
+	string _params = "";
+	foreach (var item in Context.Request.Query)
+	{
+		if (item.Key != "page")
+		{
+			_params += $"&{item.Key}={item.Value}";
+		}
+	}
+}
+
+<div class="pagination2">
+	@Html.PagedListPager((IPagedList)Model,
+			page => Url.Action("MovieGrid", new { page = page }) + _params,
+			new PagedListRenderOptions
+	{
+		LiElementClasses = new string[] { },
+		PageClasses = new string[] { "page-link" },
+	})
+</div>

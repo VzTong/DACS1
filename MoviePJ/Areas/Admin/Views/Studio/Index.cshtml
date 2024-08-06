@@ -1,0 +1,208 @@
+﻿@model IEnumerable<MoviePJ.Areas.Admin.ViewModels.FilmStudio.ListItemStudioVM>
+@{
+	ViewData["Title"] = "List of film studio";
+}
+
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="m-b-10 mt-5">Studio manager Page</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a href="#!">Studio manager Page</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ breadcrumb ] end -->
+<!-- [ Main Content ] start -->
+<div class="card">
+	<div class="card-header">
+		<h5>Studio manager</h5>
+	</div>
+	@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppStudio.VIEW_LIST))
+	{
+		@if (User.IsInPermission(AuthConst.AppStudio.CREATE))
+		{
+			<div class="ml-3 d-flex">
+				<div class="my-2 mr-2">
+					<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addStudio" onclick="openPopup(event)">
+						<i class="fas fa-book-medical"></i> &nbsp; Add new
+					</button>
+				</div>
+			</div>
+		}
+
+		<div class="card-body table-border-style">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th class="col-1">#</th>
+							<th class="col-2">Cover</th>
+							<th class="col-3">Name</th>
+							<th class="col-3"></th>
+						</tr>
+					</thead>
+					<tbody style="text-align: center">
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>@item.RowIndex</td>
+								<td>
+									<img src="/@item.Cover" width="200px" height="250px" style="object-fit:contain" />
+								</td>
+								<td>@item.Name</td>
+								<td style="text-align: center">
+									@if (User.IsInPermission(AuthConst.AppStudio.UPDATE))
+									{
+										<button class="btn btn-icon btn-outline-secondary"
+												type="button"
+												data-toggle="modal" data-target="#updateStudio"
+												onclick="UpdateStudio('@item.Name', '@item.Cover', @item.Id)">
+											<i class="fa-regular fa-pen-to-square"></i>
+										</button>
+
+									}
+
+									@if (User.IsInPermission(AuthConst.AppStudio.DELETE))
+									{
+										<a asp-action="Delete" asp-route-id="@item.Id"
+										   class="btn btn-icon btn-outline-danger btn-sm js-delete-confirm"
+										   data-msg="Confirm deletion of studio ⌈ @item.Name ⌋?">
+											<i class="fa-regular fa-trash-can"></i>
+										</a>
+									}
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div style=" margin-left: 4rem !important;">
+			<partial name="_Pager" />
+		</div>
+	}
+	else
+	{
+		<h3 class="p-3 text-center;" style="color: #00acc1; cursor: context-menu;">You don't have permission!</h3>
+	}
+</div>
+
+
+<!-- Modal -->
+<!-- Add -->
+<div id="addStudio" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addStudio" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="addStudio">Add Studio</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+
+			<form asp-action="AddStudio" asp-controller="Studio" asp-area="Admin" method="POST" enctype="multipart/form-data">
+				<input type="hidden" id="idStudio" name="Id" />
+				<div class="modal-body ml-4 col-sm-12 justify-content-center align-items-center" style="display:flex">
+					<input type="text" name="Name" class="form-control col-8 col-sm-6" placeholder="Name Studio" />
+					<div class="position-relative col-8 col-sm-6">
+						<div style="opacity: 1">
+							<div class="text-center justify-content-center align-items-center" style="border: dotted 2px rgb(139, 139, 139);  width: 150px; height: 200px">
+								<img id="imagePreview" src="/" alt="" style="width: 145px; height: 196px;object-fit:contain; display: none">
+								<i id="iconPreview" class="fas fa-cloud-upload-alt" style="font-size: 90px; color: rgb(10, 176, 202); margin-top:40px"></i>
+							</div>
+							<input name="CoverUpload" class="form-control border border-secondary position-absolute" type="file" id="fileInput" style="width: 150px; height: 200px; opacity: 0; top: 0" />
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">Save</button>
+					<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Retype</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+<!-- Edit -->
+<div id="updateStudio" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="updateStudio" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="updateStudio">Edit Studio</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+
+			<form asp-action="UpdateStudio" asp-controller="Studio" asp-area="Admin" method="POST" enctype="multipart/form-data">
+				<input type="hidden" value="" id="idEdit" name="Id" />
+				<div class="modal-body ml-4 col-sm-12 justify-content-center align-items-center" style="display:flex">
+					<input type="text" id="fullName" name="Name" value="" class="form-control col-8 col-sm-6" placeholder="Name Studio" />
+					<div class="position-relative col-8 col-sm-6">
+						<div style="opacity: 1">
+							<div class="text-center justify-content-center align-items-center" style="border: dotted 2px rgb(139, 139, 139);  width: 150px; height: 200px">
+								<img id="avatar" name="Cover" src="/" alt="" style="width: 145px; height: 196px;object-fit:contain;">
+							</div>
+							<input name="CoverUpload" class="form-control border border-secondary position-absolute" type="file" id="fileInput2" style="width: 150px; height: 200px; opacity: 0; top: 0" value="" />
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">Save</button>
+					<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Retype</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+	const fileInput = document.getElementById('fileInput');
+	const fileInput2 = document.getElementById('fileInput2');
+	const imagePreview = document.getElementById('imagePreview');
+	const avatar = document.getElementById('avatar');
+	const iconPreview = document.getElementById('iconPreview');
+
+	fileInput.addEventListener('change', function (ev) {
+		const file = fileInput.files[0];
+		if (file) {
+			imagePreview.style.display = 'block'; // Hiển thị thẻ img
+			iconPreview.style.display = 'none'; // Ẩn thẻ img
+			imagePreview.src = URL.createObjectURL(file);
+		}
+	});
+
+	fileInput2.addEventListener('change', function (ev) {
+		const file = fileInput2.files[0];
+		if (file) {
+			avatar.src = URL.createObjectURL(file);
+		}
+	});
+
+	function UpdateStudio(fullname, avatar, idStudio) {
+		document.getElementById('fullName').value = fullname;
+		document.getElementById('avatar').src = "/" + avatar;
+		document.getElementById('idEdit').value = idStudio;
+	}
+
+</script>
+
+
+@section scripts {
+
+	<link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
+	<link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+	<link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
+	<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+	<script src="~/lib/elfinder/js/elfinder.min.js"></script>
+	<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/js/film_genre/film_genre.js" asp-append-version="true"></script>
+}

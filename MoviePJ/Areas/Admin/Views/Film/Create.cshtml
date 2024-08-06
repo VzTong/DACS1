@@ -1,0 +1,91 @@
+﻿@model MoviePJ.Areas.Admin.ViewModels.Film.AddOrUpdateFilmVM
+@{
+	ViewData["Title"] = $"Add film";
+}
+
+@section Css {
+	<link href="~/lib/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" asp-append-version="true" />
+}
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="m-b-10 mt-5">Films manager Page</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a asp-controller="Film" asp-action="Index" asp-area="Admin">Films manager Page</a></li>
+					<li class="breadcrumb-item"><a href="#!">Page add film</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ breadcrumb ] end -->
+
+<div class="card">
+	<div class="card-header">
+		<h5>Add Film</h5>
+	</div>
+	@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppFilm.CREATE))
+	{
+		<div class="card-body">
+
+			<div class="row">
+				<div class="col-md-12">
+					<form asp-action="Create" method="POST" enctype="multipart/form-data">
+						<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+						<partial name="_AddOrUpdateFilm" model="@Model" />
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save </button>
+							<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Retype</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	}
+	else
+	{
+		<h3 class="p-3 text-center;" style="color: #00acc1; cursor: context-menu;">You don't have permission!</h3>
+	}
+	<partial name="_BackToList" />
+</div>
+
+
+@section Scripts {
+	<link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
+	<link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+	<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+	<script src="~/lib/elfinder/js/elfinder.min.js"></script>
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+	<script src="~/js/film/release-year.js" asp-append-version="true"></script>
+	<script src="~/lib/bootstrap-select/js/bootstrap-select.min.js"></script>
+
+	@* Script load ảnh *@
+	<script>
+		const fileInput = document.getElementById('fileInput');
+		const imagePreview = document.getElementById('imagePreview');
+		const iconPreview = document.getElementById('iconPreview');
+
+		fileInput.addEventListener('change', function (ev) {
+			const file = fileInput.files[0];
+			if (file) {
+				imagePreview.style.display = 'block'; // Hiển thị thẻ img
+				iconPreview.style.display = 'none'; // Ẩn thẻ img
+				imagePreview.src = URL.createObjectURL(file);
+			}
+		});
+
+		var input = document.querySelector('input[name=ProductMaterial]');
+		new Tagify(input)
+		var tagStr = $("#ProductMaterial").tagify('serialize');
+		console.log(tagStr);
+	</script>
+
+}

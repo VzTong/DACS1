@@ -1,0 +1,331 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MoviePJ
+build_property.RootNamespace = MoviePJ
+build_property.ProjectDir = E:\code\Project\DACS1\DACS1\MoviePJ\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = E:\code\Project\DACS1\DACS1\MoviePJ
+build_property._RazorSourceGeneratorDebug = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Components/ListRole/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cQ29tcG9uZW50c1xMaXN0Um9sZVxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Components/Permission/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cQ29tcG9uZW50c1xQZXJtaXNzaW9uXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Account/MyProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxNeVByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Account/_ChangeAvt.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxfQ2hhbmdlQXZ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Actor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWN0b3JcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Film/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRmlsbVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Film/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRmlsbVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Film/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRmlsbVxVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Film/_AddOrUpdateFilm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRmlsbVxfQWRkT3JVcGRhdGVGaWxtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Film/_CountryOption.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRmlsbVxfQ291bnRyeU9wdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Film/_FormSearch.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRmlsbVxfRm9ybVNlYXJjaC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Film/_LanguageOption.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRmlsbVxfTGFuZ3VhZ2VPcHRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Genre/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcR2VucmVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Genre/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcR2VucmVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Genre/_AddOrUpdateGenre.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcR2VucmVcX0FkZE9yVXBkYXRlR2VucmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Maker/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFrZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Role/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUm9sZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Role/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUm9sZVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Role/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUm9sZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Role/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUm9sZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/components/SelectListFilmActor/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXGNvbXBvbmVudHNcU2VsZWN0TGlzdEZpbG1BY3RvclxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/components/SelectListFilmCategory/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXGNvbXBvbmVudHNcU2VsZWN0TGlzdEZpbG1DYXRlZ29yeVxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/components/SelectListFilmGenreComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXGNvbXBvbmVudHNcU2VsZWN0TGlzdEZpbG1HZW5yZUNvbXBvbmVudFxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/components/SelectListFilmGenre/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXGNvbXBvbmVudHNcU2VsZWN0TGlzdEZpbG1HZW5yZVxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/components/SelectListFilmMaker/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXGNvbXBvbmVudHNcU2VsZWN0TGlzdEZpbG1NYWtlclxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/components/SelectListFilmStatus/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXGNvbXBvbmVudHNcU2VsZWN0TGlzdEZpbG1TdGF0dXNcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/components/SelectListFilmStudio/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXGNvbXBvbmVudHNcU2VsZWN0TGlzdEZpbG1TdHVkaW9cRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/_BackToList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9CYWNrVG9MaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/_HeaderBar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9IZWFkZXJCYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/_MainNavBar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9NYWluTmF2QmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/_Notyf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9Ob3R5Zi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/_Pager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9QYWdlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Studio/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3R1ZGlvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/User/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/User/_AddOrEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxfQWRkT3JFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/User/_BlockUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxfQmxvY2tVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Components/CateMenu/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDYXRlTWVudVxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Components/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Account/UserProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2VyUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Account/_ChangeAvt.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxfQ2hhbmdlQXZ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Account/_FormRegister.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxfRm9ybVJlZ2lzdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Account/_Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxfTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Account/_Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxfUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Film/AnimeGrid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxBbmltZUdyaWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Film/AnimeList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxBbmltZUxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Film/FilmByGenre.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxGaWxtQnlHZW5yZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Film/FilmDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxGaWxtRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Film/FilmWatching.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxGaWxtV2F0Y2hpbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Film/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Film/MovieGrid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxNb3ZpZUdyaWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Film/MovieList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxNb3ZpZUxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Film/_page.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxfcGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Film/_WatchTrailer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxfV2F0Y2hUcmFpbGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Home/403.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVw0MDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Home/404.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVw0MDQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Home/500.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVw1MDAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Shared/_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Shared/_HeaderBar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZWFkZXJCYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Shared/_Pager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Shared/_PagerAnimeGrid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlckFuaW1lR3JpZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Shared/_PagerAnimeList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlckFuaW1lTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Shared/_PagerMovieGrid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlck1vdmllR3JpZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Shared/_PagerMovieList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlck1vdmllTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-gy005f14d2
+
+[E:/code/Project/DACS1/DACS1/MoviePJ/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-4fhs0ynni3

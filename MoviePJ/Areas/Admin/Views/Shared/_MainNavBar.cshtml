@@ -1,0 +1,183 @@
+﻿@using System.Security.Claims
+@using MoviePJ.Consts
+@using MoviePJ.WebConfig.Consts
+
+<!-- [ navigation menu ] start -->
+<nav class="pcoded-navbar  ">
+	<div class="navbar-wrapper  ">
+		<div class="navbar-content scroll-div ">
+
+			<div class="">
+				<div class="main-menu-header">
+					<img class="img-radius" src="/@Context.User.FindFirstValue(AppClaimTypes.Avatar)" alt="User-Profile-Image" style="object-fit:cover">
+					<div class="user-details">
+						<span>@Context.User.FindFirstValue(AppClaimTypes.FullName)</span>
+						<div id="more-details">"@Context.User.FindFirstValue(AppClaimTypes.RoleName)"<i class="fa fa-chevron-down m-l-5"></i></div>
+					</div>
+				</div>
+				<div class="collapse" id="nav-user-link">
+					<ul class="list-unstyled">
+						<li class="list-group-item"><a asp-controller="Account" asp-action="MyProfile" asp-area="Admin"><i class="feather icon-user m-r-5"></i>View Profile</a></li>
+						<li class="list-group-item"><a asp-controller="Account" asp-action="Logout" asp-area="Admin"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<ul class="nav pcoded-inner-navbar ">
+				<li class="nav-item pcoded-menu-caption">
+					<label>Home admin page</label>
+				</li>
+
+				<li class="nav-item">
+					<a asp-controller="Home" asp-action="Index" asp-area="Admin" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+				</li>
+				@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppFilm.VIEW_LIST) || User.IsInPermission(MoviePJ.Consts.AuthConst.AppGenres.VIEW_LIST))
+				{
+
+					<li class="nav-item pcoded-menu-caption">
+						<label>Films manager</label>
+					</li>
+
+					@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppGenres.VIEW_LIST))
+					{
+						<li class="nav-item">
+							<a class="nav-link" asp-controller="Genre" asp-action="Index" asp-area="Admin">
+								<span class="pcoded-micon"><i class="fas fa-solid fa-table-list"></i></span><span class="pcoded-mtext">Genres</span>
+							</a>
+						</li>
+					}
+
+					@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppFilm.UPDATE))
+					{
+						<li class="nav-item pcoded-hasmenu">
+							<a class="nav-link ">
+								<span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Films</span>
+							</a>
+							<ul class="pcoded-submenu">
+								<li><a asp-controller="Film" asp-action="Index" asp-area="Admin">List</a></li>
+							</ul>
+							<ul class="pcoded-submenu">
+								<li><a asp-controller="Film" asp-action="Create" asp-area="Admin">Add new</a></li>
+							</ul>
+						</li>
+					}
+					else
+					{
+
+						<li class="nav-item">
+							<a class="nav-link " asp-controller="Film" asp-action="Index" asp-area="Admin">
+								<span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Films</span>
+							</a>
+						</li>
+					}
+				}
+				@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppMaker.VIEW_LIST)
+									|| User.IsInPermission(MoviePJ.Consts.AuthConst.AppActor.VIEW_LIST)
+									|| User.IsInPermission(MoviePJ.Consts.AuthConst.AppStudio.VIEW_LIST))
+				{
+
+					<li class="nav-item pcoded-menu-caption">
+						<label>Full Cast &amp; Crew manager</label>
+					</li>
+
+					if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppMaker.VIEW_LIST))
+					{
+						<li class="nav-item">
+							<a class="nav-link" asp-controller="Maker" asp-action="Index" asp-area="Admin">
+								<span class="pcoded-micon"><i class="fa-solid fa-file-signature"></i></span><span class="pcoded-mtext">Filmmakers</span>
+							</a>
+						</li>
+					}
+
+					if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppActor.VIEW_LIST))
+					{
+						<li class="nav-item">
+							<a class="nav-link" asp-controller="Actor" asp-action="Index" asp-area="Admin">
+								<span class="pcoded-micon"><i class="fa-solid fa-person-through-window"></i></span><span class="pcoded-mtext">Actors</span>
+							</a>
+						</li>
+					}
+
+					if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppStudio.VIEW_LIST))
+					{
+						<li class="nav-item">
+							<a class="nav-link" asp-controller="Studio" asp-action="Index" asp-area="Admin">
+								<span class="pcoded-micon"><i class="fa-brands fa-dropbox"></i></span><span class="pcoded-mtext">Studio</span>
+							</a>
+						</li>
+					}
+
+				}
+
+				@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppRole.VIEW_LIST)
+									|| User.IsInPermission(MoviePJ.Consts.AuthConst.AppUser.VIEW_LIST))
+				{
+					<li class="nav-item pcoded-menu-caption">
+						<label>Accounts management</label>
+					</li>
+
+					@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppRole.VIEW_LIST))
+					{
+						@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppRole.UPDATE))
+						{
+							<li class="nav-item pcoded-hasmenu">
+
+								<a class="nav-link ">
+									<span class="pcoded-micon"><i class="fa-solid fa-user-shield"></i></span><span class="pcoded-mtext">Role</span>
+								</a>
+
+								<ul class="pcoded-submenu">
+									<li><a asp-controller="Role" asp-action="Index" asp-area="Admin">List</a></li>
+								</ul>
+								<ul class="pcoded-submenu">
+									<li>
+										<a asp-controller="Role" asp-action="Create" asp-area="Admin">Add new</a>
+									</li>
+								</ul>
+							</li>
+						}
+						else
+						{
+							<li class="nav-item">
+								<a class="nav-link " asp-controller="Role" asp-action="Index" asp-area="Admin">
+									<span class="pcoded-micon"><i class="fa-solid fa-user-shield"></i></span><span class="pcoded-mtext">Role</span>
+								</a>
+							</li>
+						}
+					}
+					@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppUser.VIEW_LIST))
+					{
+						var roleId = Convert.ToInt32(Context.User.Claims.SingleOrDefault(c => c.Type.Contains(AppClaimTypes.RoleId))?.Value);
+						@if (User.IsInPermission(MoviePJ.Consts.AuthConst.AppUser.UPDATE) && roleId == AppConst.ROLE_ADMINISTRATOR_ID)
+						{
+							<li class="nav-item pcoded-hasmenu">
+								<a class="nav-link">
+									<span class="pcoded-micon"><i class="fa-solid fa-user-gear"></i></span><span class="pcoded-mtext">Account</span>
+								</a>
+
+								<ul class="pcoded-submenu">
+									<li><a asp-controller="User" asp-action="Index" asp-area="Admin">List</a></li>
+								</ul>
+								<ul class="pcoded-submenu">
+									<li>
+										<a asp-controller="User" asp-action="Create" asp-area="Admin">Add new</a>
+									</li>
+								</ul>
+							</li>
+						}
+						else
+						{
+							<li class="nav-item">
+								<a asp-controller="User" asp-action="Index" asp-area="Admin" class="nav-link ">
+									<span class="pcoded-micon"><i class="fa-solid fa-user-gear"></i></span><span class="pcoded-mtext">Account</span>
+								</a>
+							</li>
+						}
+					}
+				}
+
+			</ul>
+		</div>
+	</div>
+</nav>
+<!-- [ navigation menu ] end -->

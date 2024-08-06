@@ -1,0 +1,292 @@
+﻿@model MoviePJ.Areas.Admin.ViewModels.Account.AdminProfileVM
+@using MoviePJ.WebConfig.Consts
+@using System.Security.Claims
+@using MoviePJ.Consts
+
+@section Css {
+	<script src="~/admintle/pagepro/js/layout.js" asp-append-version="true"></script>
+}
+
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="mt-5 m-b-10">Profile</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a>Profile Page</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="position-relative mx-n4 mt-n4">
+	<div class="profile-wid-bg profile-setting-img">
+		<img src="~/AdminTLE/cloneForm/images/auth/img-auth-big.jpg" class="profile-wid-img" alt="">
+	</div>
+</div>
+<!-- [ Main Content ] start -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xxl-3">
+			<div class="card mt-n5">
+				<div class="card-body p-4">
+					<div class="text-center">
+						<div class="profile-user position-relative d-inline-block mx-auto  mb-4">
+							<img src="/@Model.Avatar"
+								 class="rounded-circle avatar-xl img-thumbnail user-profile-image"
+								 alt="user-profile-image">
+							<div class="avatar-xs p-0 rounded-circle profile-photo-edit">
+								<partial name="_ChangeAvt.cshtml" />
+
+								<label class="profile-photo-edit avatar-xs" data-toggle="modal" data-target="#exampleModalPopovers">
+									<span class="avatar-title rounded-circle bg-light text-body">
+										<i class="fa-solid fa-camera"></i>
+									</span>
+								</label>
+							</div>
+						</div>
+						<h5 class="fs-17 mb-1">@Model.FullName</h5>
+						<p class="text-muted mb-0">@Context.User.FindFirstValue(AppClaimTypes.RoleName)</p>
+					</div>
+				</div>
+			</div>
+			<!--end card-->
+		</div>
+		<!--end col-->
+		<div class="col-xxl-9">
+			<div class="card mt-n5 mt-xxl-n5">
+				<div class="card-header">
+					<ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0"
+						id="myTab"
+						role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="personal-details" 
+							   data-toggle="tab"
+							   aria-controls="personalDetails" 
+							   aria-selected="true" 
+							   href="#personalDetails"
+							   role="tab">
+								<i class="fas fa-home"></i>
+								Personal Details
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="change-password"
+							   data-toggle="tab"
+							   aria-controls="changePassword" aria-selected="false"
+							   href="#changePassword"
+							   role="tab">
+								<i class="far fa-user"></i>
+								Change Password
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="card-body p-4">
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane fade show active" id="personalDetails" role="tabpanel" aria-labelledby="personal-details">
+							<form method="POST" class="user" asp-controller="Account" asp-action="MyProfile" asp-area="Admin">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="mb-3">
+											<label for="firstnameInput" class="form-label">
+												User
+												Name
+											</label>
+											<input type="text" class="form-control"
+												   id="firstnameInput" placeholder="@Model.Username" disabled>
+										</div>
+									</div>
+									<!--end col-->
+									<div class="col-lg-6">
+										<div class="mb-3">
+											<label for="lastnameInput" class="form-label">
+												Full
+												Name
+											</label>
+											<input type="text" class="form-control"
+												   id="lastnameInput" asp-for="FullName" placeholder="@Model.FullName">
+										</div>
+									</div>
+									<!--end col-->
+									<div class="col-lg-6">
+										<div class="mb-3">
+											<label for="phonenumberInput" class="form-label">
+												Phone
+												Number 1
+											</label>
+											<input type="text" class="form-control"
+												   id="phonenumberInput" asp-for="PhoneNumber1"
+												   placeholder="@Model.PhoneNumber1">
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="mb-3">
+											<label for="phonenumberInput" class="form-label">
+												Phone
+												Number 2
+											</label>
+											<input type="text" class="form-control"
+												   id="phonenumberInput" asp-for="PhoneNumber2"
+												   placeholder="@Model.PhoneNumber2">
+										</div>
+									</div>
+									<!--end col-->
+									<div class="col-lg-6">
+										<div class="mb-3">
+											<label for="emailInput" class="form-label">
+												Email
+												Address
+											</label>
+											<input type="email" class="form-control" id="emailInput" asp-for="Email"
+												   placeholder="Enter your email">
+										</div>
+									</div>
+									<!--end col-->
+									@* <div class="col-lg-12">
+										<div class="mb-3">
+											<label for="skillsInput"
+												   class="form-label">Skills</label>
+											<select class="form-control" name="skillsInput"
+													data-choices data-choices-removeItem multiple
+													id="skillsInput">
+												<option value="illustrator">Illustrator</option>
+												<option value="photoshop">Photoshop</option>
+												<option value="css">CSS</option>
+												<option value="html">HTML</option>
+												<option value="javascript" selected>
+													Javascript
+												</option>
+												<option value="python">Python</option>
+												<option value="php">PHP</option>
+											</select>
+										</div>
+									</div> *@
+									<!--end col-->
+									<div class="col-lg-12">
+										<div class="mb-3 pb-2">
+											<label for="exampleFormControlTextarea"
+												   class="form-label">Address</label>
+											<textarea class="form-control"
+													  id="exampleFormControlTextarea"
+													  asp-for="Address"
+													  placeholder="@Model.Address"
+													  rows="3">
+											</textarea>
+										</div>
+									</div>
+									<!--end col-->
+									<div class="col-lg-12">
+										<div class="hstack gap-2 justify-content-end">
+											<button type="submit"
+													class="btn btn-primary">
+												<i class="fa-solid fa-floppy-disk"></i>
+												Updates
+											</button>
+
+											<button type="reset" 
+													class="btn btn-default">
+												<i class="fa fa-undo"></i> 
+												Retype
+											</button>
+
+											<button type="button"
+													class="btn btn-soft-success">
+												Cancel
+											</button>
+										</div>
+									</div>
+									<!--end col-->
+								</div>
+								<!--end row-->
+							</form>
+						</div>
+						<!--end tab-pane-->
+						<div class="tab-pane fade" id="changePassword" role="tabpanel" aria-labelledby="change-password">
+							<form asp-controller="Account" asp-action="ChangePassword" asp-area="Admin" method="post">
+								<div class="row g-2">
+									<div class="col-lg-4">
+										<div>
+											<label class="form-label">
+												Old
+												Password*
+											</label>
+											<input type="password" class="form-control"
+													asp-for="Pwd"
+												   placeholder="Enter current password">
+										</div>
+									</div>
+									<!--end col-->
+									<div class="col-lg-4">
+										<div>
+											<label for="newpasswordInput" class="form-label">
+												New
+												Password*
+											</label>
+											<input type="password" class="form-control"
+												   asp-for="NewPwd"
+												   placeholder="Enter new password">
+										</div>
+									</div>
+									<!--end col-->
+									<div class="col-lg-4">
+										<div>
+											<label for="confirmpasswordInput"
+												   class="form-label">
+												Confirm
+												Password*
+											</label>
+											<input type="password" class="form-control"
+												   asp-for="ConfirmPassword"
+												   placeholder="Confirm password">
+										</div>
+									</div>
+									<!--end col-->
+									<div class="col-lg-12 mt-3">
+										<div class="text-end">
+											<button type="submit" class="btn btn-success">
+												Change
+												Password
+											</button>
+
+											<button type="button" class="btn btn-soft-success">
+												Cancel
+											</button>
+										</div>
+									</div>
+									<!--end col-->
+								</div>
+								<!--end row-->
+							</form>
+						</div>
+						<!--end tab-pane-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--end col-->
+	</div>
+	<!--end row-->
+
+</div>
+<!-- end main content-->
+<!-- [ Main Content ] end -->
+@section Scripts {
+	<script src="~/admintle/pagepro/libs/bootstrap/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+	<script src="~/admintle/pagepro/libs/simplebar/simplebar.min.js" asp-append-version="true"></script>
+	<script src="~/admintle/pagepro/libs/node-waves/waves.min.js" asp-append-version="true"></script>
+	<script src="~/admintle/pagepro/libs/feather-icons/feather.min.js" asp-append-version="true"></script>
+	<script src="~/admintle/pagepro/js/pages/plugins/lord-icon-2.1.0.js" asp-append-version="true"></script>
+	<script src="~/admintle/pagepro/js/plugins.js" asp-append-version="true"></script>
+
+	<!-- particles js -->
+	<script src="~/admintle/pagepro/libs/particles.js/particles.js" asp-append-version="true"></script>
+	<!-- particles app js -->
+	<script src="~/admintle/pagepro/js/pages/particles.app.js" asp-append-version="true"></script>
+	<!-- password-addon init -->
+	<script src="~/admintle/pagepro/js/pages/password-addon.init.js" asp-append-version="true"></script>
+}

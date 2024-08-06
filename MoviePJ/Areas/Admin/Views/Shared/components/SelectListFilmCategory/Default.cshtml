@@ -1,0 +1,16 @@
+﻿<select id="@ViewBag.For" name="@ViewBag.For"
+        asp-items="(MultiSelectList)ViewBag.filmGenre"
+        class="selectpicker form-control" title="Genres list..." multiple ata-live-search="true">
+    @if (ViewBag.AllowNull == true)
+    {
+        var ids = Model.SelectedFilmGenres?.Split(',').Select(int.Parse("")).ToList() ?? new List<int>();
+        if (ids.Contains(-1))
+        {
+            <option value="-1" disabled selected>There is no category</option>
+        }
+        else
+        {
+            <option value="-1">There is no category</option>
+        }
+    }
+</select>

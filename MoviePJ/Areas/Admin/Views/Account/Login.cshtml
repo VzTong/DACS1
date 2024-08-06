@@ -1,0 +1,127 @@
+﻿@model MoviePJ.Areas.Admin.ViewModels.Account.LoginVM
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Sign In | MoviePJ - Admin Page</title>
+
+	<!-- App favicon -->
+	<link rel="icon" href="~/folder-manager-32px.ico" type="image/x-icon" />
+
+	<!-- Layout config Js -->
+	<script src="~/admintle/pagepro/js/layout.js" asp-append-version="true"></script>
+	<!-- Bootstrap Css -->
+	<link href="~/admintle/pagepro/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+	<!-- Icons Css -->
+	<link href="~/admintle/pagepro/css/icons.min.css" rel="stylesheet" asp-append-version="true" />
+	<!-- App Css-->
+	<link href="~/admintle/pagepro/css/app.min.css" rel="stylesheet" />
+</head>
+
+<body>
+	<input type="text" />
+	<div class="auth-page-wrapper pt-5">
+		<!-- auth page bg -->
+		<div class="auth-one-bg-position auth-one-bg" id="auth-particles">
+			<div class="bg-overlay"></div>
+
+			<div class="shape">
+				<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 120">
+					<path d="M 0,36 C 144,53.6 432,123.2 720,124 C 1008,124.8 1296,56.8 1440,40L1440 140L0 140z"></path>
+				</svg>
+			</div>
+		</div>
+
+		<!-- auth page content -->
+		<div class="auth-page-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="text-center mt-sm-5 mb-4 text-white-50">
+							<div>
+								<a asp-action="Index" asp-area="Admin" asp-controller="Home" class="d-inline-block auth-logo">
+									<img src="~/images/Logo.jpg" alt="Logo" height="70px">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end row -->
+
+				<div class="row justify-content-center">
+					<div class="col-md-8 col-lg-6 col-xl-5">
+						<div class="card mt-4">
+
+							<div class="card-body p-4">
+								<div class="text-center mt-2">
+									<h5 class="text-primary">Welcome Back !</h5>
+									<p class="text-muted">Sign in to continue.</p>
+								</div>
+								<div class="p-2 mt-4">
+									<form method="post" asp-action="Login" asp-controller="Account" asp-area="Admin">
+										<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+										<div class="mb-3">
+											<label for="username" class="form-label">Username</label>
+											<input type="text" class="form-control" asp-for="Username" placeholder="Enter username">
+											<span asp-validation-for="Username" class="text-danger"></span>
+										</div>
+
+										<div class="mb-3">
+											<label class="form-label" for="password-input">Password</label>
+											<div class="position-relative auth-pass-inputgroup mb-3">
+												<input type="password" asp-for="Password" class="form-control pe-5 password-input" placeholder="Enter password">
+												<button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+												<span asp-validation-for="Password" class="text-danger"></span>
+											</div>
+										</div>
+
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
+											<label class="form-check-label" for="auth-remember-check">Remember me</label>
+										</div>
+
+										<div class="mt-4">
+											<button class="btn btn-success w-100" type="submit">Sign In</button>
+										</div>
+
+									</form>
+								</div>
+							</div>
+							<!-- end card body -->
+						</div>
+						<!-- end card -->
+
+					</div>
+				</div>
+				<!-- end row -->
+			</div>
+			<!-- end container -->
+		</div>
+		<!-- end auth page content -->
+
+	</div>
+	<!-- end auth-page-wrapper -->
+	<!-- JAVASCRIPT -->
+	@await Component.InvokeAsync("Notyf")
+
+	<script src="~/admintle/pagepro/libs/bootstrap/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+	<script src="~/admintle/pagepro/libs/simplebar/simplebar.min.js" asp-append-version="true"></script>
+	<script src="~/admintle/pagepro/libs/node-waves/waves.min.js" asp-append-version="true"></script>
+	<script src="~/admintle/pagepro/libs/feather-icons/feather.min.js" asp-append-version="true"></script>
+	<script src="~/admintle/pagepro/js/pages/plugins/lord-icon-2.1.0.js" asp-append-version="true"></script>
+	<script src="~/admintle/pagepro/js/plugins.js" asp-append-version="true"></script>
+
+	<!-- particles js -->
+	<script src="~/admintle/pagepro/libs/particles.js/particles.js" asp-append-version="true"></script>
+	<!-- particles app js -->
+	<script src="~/admintle/pagepro/js/pages/particles.app.js" asp-append-version="true"></script>
+	<!-- password-addon init -->
+	<script src="~/admintle/pagepro/js/pages/password-addon.init.js" asp-append-version="true"></script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] | MoviePJ - Admin</title>
+	<link rel="icon" href="~/folder-manager-32px.ico" type="image/x-icon" />
+
+	<link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+	<link href="~/admintle/cloneform/css/plugins/animate.min.css" rel="stylesheet" asp-append-version="true" />
+	<link href="~/admintle/cloneform/css/plugins/bootstrap.css" rel="stylesheet" asp-append-version="true" />
+	<link href="~/admintle/cloneform/css/plugins/perfect-scrollbar.css" rel="stylesheet" asp-append-version="true" />
+	<link href="~/lib/bs4-autocomplete/css/bs4-autocomplete.css" rel="stylesheet" asp-append-version="true" />
+	<link href="~/lib/bs4-toast-snackbar/css/toast-snackbar.css" rel="stylesheet" asp-append-version="true" />
+	<link href="~/admintle/cloneform/css/style.css" rel="stylesheet" asp-append-version="true" />
+	@RenderSection("Css", false)
+
+</head>
+<body class="scroll-bar">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	<!-- [ Pre-loader ] End -->
+	<partial name="_MainNavBar" />
+	<partial name="_HeaderBar" />
+
+	@* <vc:main-nav-bar></vc:main-nav-bar> *@
+
+	<!-- [ Main Content ] start -->
+	<div class="pcoded-main-container">
+		<div class="pcoded-content">
+			<div class="mt-5">
+				<partial name="_Notyf" />
+			</div>
+			@RenderBody()
+		</div>
+	</div>
+	<!-- [ Main Content ] end -->
+
+	<!-- jQuery -->
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/admintle/cloneform/js/vendor-all.min.js" asp-append-version="true"></script>
+	<script src="~/admintle/cloneform/js/plugins/bootstrap.min.js" asp-append-version="true"></script>
+	<script src="~/admintle/cloneform/js/pcoded.js" asp-append-version="true"></script>
+	<!-- Apex Chart -->
+	<script src="~/admintle/cloneform/js/plugins/apexcharts.min.js" asp-append-version="true"></script>
+
+	<!-- custom-chart js -->
+	<script src="~/admintle/cloneform/js/pages/dashboard-main.js" asp-append-version="true"></script>
+	<!-- Thư viện toast-->
+	<script src="~/lib/bs4-toast-snackbar/js/toast-snackbar.js" asp-append-version="true"></script>
+	<!-- Thư viện modal -->
+    <script src="~/lib/bs4-modal/modal.js" asp-append-version="true"></script>
+	<!-- Thư viện autocomplete -->
+    <script src="~/lib/bs4-autocomplete/js/bs4-autocomplete.js" asp-append-version="true"></script>
+	<!-- Validation -->
+	<partial name="_ValidationScriptsPartial" />
+	<!-- AdminLTE App -->
+	<script src="~/js/adminlte.min.js"></script>
+	<!-- Javascript dùng chung -->
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+	@await Component.InvokeAsync("Notyf")
+
+	<script type="text/javascript">
+		document.addEventListener("scroll",
+			function () {
+				var e;
+				(e = document.getElementById("page-topbar")) && (50 <= document.body.scrollTop || 50 <= document.documentElement.scrollTop ? e.classList.add("topbar-shadow") : e.classList.remove("topbar-shadow"))
+			})
+    </script>
+
+
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

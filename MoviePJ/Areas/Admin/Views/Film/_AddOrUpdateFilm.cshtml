@@ -1,0 +1,244 @@
+﻿@model MoviePJ.Areas.Admin.ViewModels.Film.AddOrUpdateFilmVM
+@using System.Linq
+@using MoviePJ.WebConfig.Consts
+
+<div class="row" style="display:flex">
+	@* <input type="hidden" name="beforeUrl" value="@ViewBag.BeforeUrl" /> *@
+	<div class="col-6">
+		<div class="form-group">
+			<label asp-for="Name" class="control-label">Name film</label>
+			<input asp-for="Name" placeholder="Name fillm..." class="form-control" />
+			<span asp-validation-for="Name" class="text-danger"></span>
+		</div>
+	</div>
+	<div class="col-6">
+		<div class="form-group">
+			<label asp-for="AnotherName" class="control-label">Another name</label>
+			<input asp-for="AnotherName" placeholder="Another name..." class="form-control" />
+			<span asp-validation-for="AnotherName" class="text-danger"></span>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6 p-0" style="display:flex">
+		<div class="col-4">
+			<div class="form-group">
+				<label asp-for="ReleaseYear" class="control-label">Release Year</label>
+				<input asp-for="ReleaseYear" type="number" min="1700" id="yearPicker" class="form-control" />
+				<span asp-validation-for="ReleaseYear" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="col-4">
+			<div class="form-group">
+				<label asp-for="Time" class="control-label">Time watching</label>
+				<input asp-for="Time" type="number" placeholder="Minute / 1 ep..." class="form-control" />
+				<span asp-validation-for="Time" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="form-group">
+				<label asp-for="EpisodeCount" class="control-label">Episodes count</label>
+				<input asp-for="EpisodeCount" placeholder="Episodes count..." class="form-control" />
+				<span asp-validation-for="EpisodeCount" class="text-danger"></span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<label asp-for="TrailerPathFile" class="control-label">Trailer path</label>
+			<input asp-for="TrailerPathFile" type="file" placeholder="Trailer path..." class="form-control p-2" accept="video/*" />
+			@if (Model != null)
+			{
+				<br />
+				<span>Old Trailer: </span>
+				<span class="badge badge-pill badge-light-info">@Model.TrailerPath</span>
+			}
+			<span asp-validation-for="TrailerPathFile" class="text-danger"></span>
+		</div>
+	</div>
+</div>
+
+<div class="row" style="display:flex">
+	<div class="col-md-6">
+		<div class="form-group">
+			<label asp-for="GenreId" class="control-label required">Genres</label>
+			@await Component.InvokeAsync("SelectListFilmCategory", new
+				{
+					selectedValue = Model?.GenreId,
+					_for = "GenreId",
+					allowNull = false
+				})
+
+			<span asp-validation-for="GenreId" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="Country" class="control-label required">Country</label>
+			<div class="form-group">
+				<select asp-for="Country" class="bs-autocomplete form-control" title="ProductCategory">
+					@if (Model != null)
+					{
+						<option value="@Model.Country">@Model.Country</option>
+						<partial name="_CountryOption" />
+					}
+					else
+					{
+						<partial name="_CountryOption" />
+					}
+				</select>
+			</div>
+			<span asp-validation-for="Country" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="Language" class="control-label">Language</label>
+			<div class="form-group">
+				<select asp-for="Language" class="bs-autocomplete form-control" title="ProductCategory">
+					@if (Model != null)
+					{
+						<option value="@Model.Language">@Model.Language</option>
+						<partial name="_LanguageOption" />
+					}
+					else
+					{
+						<partial name="_LanguageOption" />
+					}
+				</select>
+			</div>
+			<span asp-validation-for="Language" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="form-group">
+			<label asp-for="MakerId" class="control-label required">Makers</label>
+			@await Component.InvokeAsync("SelectListFilmMaker", new
+				{
+					selectedValue = Model?.MakerId,
+					_for = "MakerId",
+					allowNull = false
+				})
+
+			<span asp-validation-for="MakerId" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="ActorId" class="control-label required">Actors</label>
+			@await Component.InvokeAsync("SelectListFilmActor", new
+				{
+					selectedValue = Model?.ActorId,
+					_for = "ActorId",
+					allowNull = false
+				})
+
+			<span asp-validation-for="ActorId" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="StudioId" class="control-label required">Studios</label>
+			@await Component.InvokeAsync("SelectListFilmStudio", new
+				{
+					selectedValue = Model?.StudioId,
+					_for = "StudioId",
+					allowNull = false
+				})
+
+			<span asp-validation-for="StudioId" class="text-danger"></span>
+		</div>
+	</div>
+</div>
+
+<div class="row form-group">
+	<div class="form-group">
+		<label asp-for="StatusId" class="control-label required">Status</label>
+		@await Component.InvokeAsync("SelectListFilmStatus", new
+			{
+				selectedValue = Model?.StatusId,
+				_for = "StatusId",
+				allowNull = false
+			})
+		<span asp-validation-for="StatusId" class="text-danger"></span>
+	</div>
+</div>
+
+<div class="form-group">
+	<section class="content">
+		<div class="card">
+			<div class="card-header" style="display:flex; height: 65px">
+				<h3 class="card-title">Episode</h3>
+				<div class="card-tools">
+					<button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+						<i class="fas fa-minus"></i>
+					</button>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="row" style="--vz-gutter-x: -0.5rem !important;">
+					@{
+						var eps = Model?.AppEpisodes.Take(24).ToList();
+						for (int i = 1; i <= 24; i++)
+						{
+							var path = "";
+							if (eps != null && i <= eps.Count)
+							{
+								path = eps[i - 1].Path;
+							}
+							<div class="col-3">
+								<div class="form-group group-container">
+									<label class="control-label">Ep @i</label>
+									<div class="position-relative">
+										<input name="PathEp@(i)_Upload"
+											   value="@path"
+											   class="form-group p-1"
+											   style="border: 2px solid rgba(0, 0, 0, 0.15); border-radius: 5px"
+											   type="file" 
+											   placeholder="Trailer path..." 
+											   accept="video/*" />
+										@if(Model is not null)
+										{
+											if(Model.AppEpisodes is not null)
+											{
+												<br />
+												<span class="badge badge-pill badge-light-info">@path</span>
+											}
+											else
+											{
+												<span class="badge badge-pill badge-light-waring">Nothing</span>
+											}
+										}
+									</div>
+								</div>
+							</div>
+
+						}
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<div class="row form-group">
+	<div class="col-sm-10">
+		<label asp-for="Desc" class="control-label">Description</label>
+		<textarea asp-for="Desc" class="form-control" rows="7"> </textarea>
+		<span asp-validation-for="Desc" class="text-danger"></span>
+	</div>
+	<div class="col-2">
+		<div class="position-relative col-2">
+			<div style="opacity: 1">
+				<div class="text-center justify-content-center align-items-center" style="border: dotted 2px rgb(139, 139, 139);  width: 150px; height: 200px">
+					@if (Model != null)
+					{
+						<img id="imagePreview" src="/@Model.Cover" alt="" style="width: 145px; height: 196px;object-fit:cover;">
+						<i id="iconPreview" class="fas fa-cloud-upload-alt" style="font-size: 90px; color: rgb(10, 176, 202); margin-top:40px; display: none"></i>
+					}
+					else
+					{
+						<img id="imagePreview" src="/" alt="" style="width: 145px; height: 196px;object-fit:cover; display: none">
+						<i id="iconPreview" class="fas fa-cloud-upload-alt" style="font-size: 90px; color: rgb(10, 176, 202); margin-top:40px"></i>
+					}
+				</div>
+				<input asp-for="CoverUpload" class="form-control border border-secondary position-absolute" type="file" id="fileInput" accept="image/*" style="width: 150px; height: 200px; opacity: 0; top: 0" />
+			</div>
+		</div>
+	</div>
+</div>

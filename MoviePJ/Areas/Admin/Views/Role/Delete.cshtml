@@ -1,0 +1,91 @@
+﻿@model MoviePJ.Areas.Admin.ViewModels.Role.RoleDeleteVM
+
+@{
+	ViewData["Title"] = $"Confirm deletion of role ⌈ {Model.Name} ⌋";
+}
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+	<div class="page-block">
+		<div class="row align-items-center">
+			<div class="col-md-12">
+				<div class="page-header-title">
+					<h5 class="m-b-10 mt-5">Role manager Page</h5>
+				</div>
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home"><i class="feather icon-home"></i></a></li>
+					<li class="breadcrumb-item"><a asp-controller="Role" asp-action="Index" asp-area="Admin">Role manager Page</a></li>
+					<li class="breadcrumb-item"><a href="#!">Page delete role</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ breadcrumb ] end -->
+
+<div class="card">
+	<div class="card-header">
+		<h5>Delete role ⌈ @Model.Name ⌋</h5>
+	</div>
+
+	<div class="card-body">
+
+		<div class="row">
+			<div class="col-md-12">
+				<form asp-action="Delete">
+					<div class="row">
+
+						<div class="col-md-4 col-xl-3">
+							<h5>Role information</h5>
+							<p class="small mb-1">Created at @Model.CreatedDate.ToDMYHM()</p>
+							<p class="small mb-2">Last updated at @Model.UpdatedDate.ToDMYHM()</p>
+							<input asp-for="Id" type="hidden" />
+							<input asp-for="Name" type="hidden" />
+							<div class="form-group">
+								<label>Name role</label>
+								<input class="form-control" readonly value="@Model.Name" />
+							</div>
+							<div class="form-group">
+								<label>Description</label>
+								<input class="form-control" readonly value="@Model.Desc" />
+							</div>
+							<div class="form-group">
+								<label asp-for="NewId">Alternative role</label>
+								<select asp-for="NewId" class="bs-autocomplete form-control">
+									<vc:list-role seleteted-id="null" exclude-ids="new int[] { Model.Id }"></vc:list-role>
+								</select>
+								<span asp-validation-for="NewId" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="col-md-8 col-xl-9">
+							<h5>There are @Model.AppUsers.Count accounts affected</h5>
+							<div class="row">
+								@for (int i = 0; i < Model.AppUsers.Count; i++)
+								{
+									<div class="col-md-6 col-lg-4 col-xl-3">
+										<p class="hover:text-primary text-bold">@(i + 1). @Model.AppUsers[i].Username</p>
+									</div>
+								}
+							</div>
+						</div>
+
+						<div class="col-12 text-center">
+							<button type="button" class="btn btn-danger px-4 js-delete-confirm" data-mode="submit">
+								<i class="fa fa-trash mr-2"></i> Delete this role
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<partial name="_BackToList" />
+</div>
+
+
+@section scripts {
+	<script src="~/lib/masonry/masonry.pkgd.min.js"></script>
+	<script src="~/js/role/create-edit-role.js" asp-append-version="true"></script>
+}

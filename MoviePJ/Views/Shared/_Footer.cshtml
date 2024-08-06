@@ -1,0 +1,78 @@
+﻿@using MoviePJ.WebConfig.Consts
+
+<!-- footer v2 section-->
+<footer class="ht-footer full-width-ft">
+	<div class="row">
+		<div class="flex-parent-ft">
+			<div class="flex-child-ft item1">
+				<a asp-action="Index" asp-area="" asp-controller="Home">
+					<img class="logo" src="~/images/Logo.jpg" style="width: 300px; height: 130px;" alt="">
+				</a>
+			</div>
+			<div class="flex-child-ft item2">
+				<h4>Students perform</h4>
+				<ul>
+					<li><a href="#">Tong Nha Vy | 211987</a></li>
+					<li><a href="#">Nguyen Ngoc Nhu Y | 211501</a></li>
+				</ul>
+			</div>
+			
+			<div class="flex-child-ft item3">
+				<h4>Resources</h4>
+				<ul>
+					<li><a asp-controller="Film" asp-action="MovieList">Movie list</a></li>
+					<li><a asp-controller="Film" asp-action="MovieGrid">Movie grid</a></li>
+					<li><a asp-controller="Film" asp-action="AnimeList">Anime list</a></li>
+					<li><a asp-controller="Film" asp-action="AnimeGrid">Anime grid</a></li>
+					<li><a asp-controller="Film" asp-action="FilmByGenre">Film list</a></li>
+				</ul>
+			</div>
+
+			@if (Context.User.Identity.IsAuthenticated)
+			{
+				var roleId = Convert.ToInt32(Context.User.Claims.SingleOrDefault(c => c.Type.Contains(AppClaimTypes.RoleId))?.Value);
+
+				@if (roleId != AppConst.ROLE_CUSTOMER_ID)
+				{
+					<div class="flex-child-ft item4">
+						<h4>Account</h4>
+						<ul>
+							<li><a asp-controller="Account" asp-action="UserProfile">My Account</a></li>
+							<li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Web Managemet</a></li>
+							@* <li><a href="#">Watchlist</a></li> *@
+						</ul>
+					</div>
+				}
+				else
+				{
+					<div class="flex-child-ft item4">
+						<h4>Account</h4>
+						<ul>
+							<li><a asp-controller="Account" asp-action="UserProfile">My Account</a></li>
+							@* <li><a href="#">Watchlist</a></li> *@
+						</ul>
+					</div>
+				}
+			}
+			else 
+			{
+				<div class="flex-child-ft item4">
+					<h4>Account</h4>
+					<ul>
+						<li class="loginLink"><a href="#">Log In</a></li>
+						<li class="btn signupLink"><a href="#">Register</a></li>
+					</ul>
+				</div>
+			}
+
+		</div>
+		<div class="ft-copyright">
+			<div class="ft-left">
+			</div>
+			<div class="backtotop">
+				<p><a href="#" id="back-to-top">Back to top  <i class="ion-ios-arrow-thin-up"></i></a></p>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- end of footer v2 section-->
