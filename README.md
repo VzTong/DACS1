@@ -64,7 +64,6 @@ Built with **MVC pattern** for clear organization:
 🍞 AspNetCoreHero.ToastNotification # User notifications
 🔐 BCrypt.Net-Next             # Password hashing
 📄 X.PagedList                # Pagination support
-🗂️ AutoMapper                  # Object mapping
 ```
 
 ### 🎯 CRUD Operations Breakdown
