@@ -18,9 +18,9 @@ namespace MoviePJ.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.3")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
             modelBuilder.Entity("MoviePJ.Entities.AppActor", b =>
                 {
@@ -28,20 +28,20 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Avatar")
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -49,13 +49,13 @@ namespace MoviePJ.Migrations
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -504,21 +504,21 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("varchar(150)");
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -530,7 +530,7 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -545,7 +545,7 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CommentId")
                         .HasColumnType("int");
@@ -554,10 +554,10 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -566,7 +566,7 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -586,16 +586,16 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -608,13 +608,13 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Path")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -8311,33 +8311,33 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AnotherName")
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Country")
                         .IsRequired()
                         .HasMaxLength(56)
-                        .HasColumnType("nvarchar(56)");
+                        .HasColumnType("varchar(56)");
 
                     b.Property<string>("Cover")
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Desc")
                         .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasColumnType("varchar(1000)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -8350,18 +8350,18 @@ namespace MoviePJ.Migrations
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
+                        .HasColumnType("tinyint(1)")
                         .HasDefaultValue(true);
 
                     b.Property<string>("Language")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("ReleaseYear")
                         .HasMaxLength(4)
@@ -8369,7 +8369,7 @@ namespace MoviePJ.Migrations
 
                     b.Property<string>("Slug")
                         .HasMaxLength(125)
-                        .HasColumnType("nvarchar(125)");
+                        .HasColumnType("varchar(125)");
 
                     b.Property<int?>("StatusId")
                         .HasColumnType("int");
@@ -8379,13 +8379,13 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TrailerPath")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -9102,7 +9102,7 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("AppActorId")
                         .HasColumnType("int");
@@ -9114,10 +9114,10 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -9126,7 +9126,7 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -9579,16 +9579,16 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -9603,7 +9603,7 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -9944,7 +9944,7 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CateLevel")
                         .ValueGeneratedOnAdd()
@@ -9956,40 +9956,40 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Desc")
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
 
                     b.Property<bool>("HasChild")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
+                        .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int?>("ParentCateId")
                         .HasColumnType("int");
 
                     b.Property<string>("Slug")
                         .HasMaxLength(125)
-                        .HasColumnType("nvarchar(125)");
+                        .HasColumnType("varchar(125)");
 
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -10316,16 +10316,16 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -10340,7 +10340,7 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -11304,20 +11304,20 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Avatar")
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -11325,13 +11325,13 @@ namespace MoviePJ.Migrations
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -11647,18 +11647,18 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Cover")
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("CoverThumbnail")
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
@@ -11666,45 +11666,45 @@ namespace MoviePJ.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
 
                     b.Property<bool>("Published")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
+                        .HasColumnType("tinyint(1)")
                         .HasDefaultValue(true);
 
                     b.Property<DateTime?>("PublishedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Slug")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("StampPath")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Summary")
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
@@ -11716,7 +11716,7 @@ namespace MoviePJ.Migrations
 
                     b.Property<float>("Votes")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("real")
+                        .HasColumnType("float")
                         .HasDefaultValue(0f);
 
                     b.HasKey("Id");
@@ -11735,24 +11735,24 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool?>("CanDelete")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Desc")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -11760,13 +11760,13 @@ namespace MoviePJ.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -11799,7 +11799,7 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AppRoleId")
                         .HasColumnType("int");
@@ -11808,10 +11808,10 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -11823,7 +11823,7 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -12290,20 +12290,20 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Desc")
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -12311,13 +12311,13 @@ namespace MoviePJ.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -12344,20 +12344,20 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Cover")
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -12365,13 +12365,13 @@ namespace MoviePJ.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -12708,16 +12708,16 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -12732,7 +12732,7 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -13101,33 +13101,33 @@ namespace MoviePJ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int?>("AppRoleId")
                         .HasColumnType("int");
 
                     b.Property<string>("Avatar")
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<int?>("BlockedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("BlockedTo")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -13139,7 +13139,7 @@ namespace MoviePJ.Migrations
 
                     b.Property<string>("FullName")
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
@@ -13165,7 +13165,7 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -13193,8 +13193,8 @@ namespace MoviePJ.Migrations
                             CreatedDate = new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin_test@gmail.com",
                             FullName = "Administrator",
-                            PasswordHash = new byte[] { 105, 186, 48, 228, 0, 113, 133, 248, 219, 213, 103, 0, 57, 97, 215, 5, 228, 198, 209, 1, 131, 52, 11, 98, 1, 80, 113, 3, 232, 128, 90, 139, 219, 15, 199, 67, 65, 207, 36, 21, 236, 186, 92, 173, 52, 26, 7, 191, 143, 255, 39, 198, 5, 146, 158, 201, 247, 93, 47, 249, 202, 133, 102, 84 },
-                            PasswordSalt = new byte[] { 161, 254, 5, 220, 148, 251, 240, 162, 229, 28, 193, 18, 131, 184, 205, 86, 205, 164, 183, 61, 191, 55, 61, 47, 105, 45, 31, 145, 22, 134, 228, 74, 150, 206, 195, 144, 147, 182, 114, 251, 64, 154, 203, 164, 140, 165, 245, 237, 151, 250, 249, 116, 108, 32, 172, 1, 172, 60, 171, 122, 93, 162, 111, 161, 204, 116, 59, 103, 90, 112, 146, 94, 32, 215, 247, 247, 202, 62, 103, 159, 249, 32, 127, 48, 193, 168, 148, 38, 148, 108, 108, 242, 66, 188, 225, 161, 99, 239, 234, 254, 193, 224, 183, 159, 136, 238, 77, 183, 102, 48, 121, 158, 220, 87, 126, 208, 30, 134, 107, 79, 118, 133, 34, 128, 30, 80, 170, 126 },
+                            PasswordHash = new byte[] { 222, 247, 219, 129, 218, 22, 43, 123, 61, 172, 164, 103, 49, 222, 133, 73, 20, 23, 107, 223, 64, 103, 148, 62, 249, 98, 43, 28, 246, 71, 111, 222, 230, 130, 131, 75, 157, 156, 94, 214, 232, 74, 186, 211, 5, 18, 127, 200, 154, 15, 69, 205, 89, 221, 117, 196, 221, 246, 8, 84, 203, 213, 14, 217 },
+                            PasswordSalt = new byte[] { 218, 180, 40, 20, 12, 105, 129, 140, 15, 159, 134, 238, 189, 182, 161, 83, 229, 230, 211, 87, 138, 200, 179, 103, 180, 244, 25, 193, 251, 182, 34, 225, 125, 14, 12, 80, 70, 56, 181, 209, 187, 7, 128, 153, 70, 127, 49, 103, 199, 174, 126, 33, 149, 108, 199, 193, 99, 9, 225, 135, 26, 6, 210, 151, 129, 40, 187, 248, 98, 162, 67, 50, 66, 229, 152, 86, 149, 233, 179, 12, 229, 192, 115, 240, 227, 34, 139, 220, 194, 50, 9, 0, 131, 161, 18, 145, 3, 129, 54, 218, 245, 233, 6, 164, 126, 197, 27, 80, 55, 225, 95, 198, 57, 104, 248, 243, 69, 168, 196, 38, 100, 1, 221, 116, 126, 252, 250, 96 },
                             PhoneNumber1 = "0987654321",
                             PhoneNumber2 = "0987654321",
                             UpdatedBy = -1,
@@ -13211,8 +13211,8 @@ namespace MoviePJ.Migrations
                             CreatedDate = new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user_test@gmail.com",
                             FullName = "User One",
-                            PasswordHash = new byte[] { 105, 186, 48, 228, 0, 113, 133, 248, 219, 213, 103, 0, 57, 97, 215, 5, 228, 198, 209, 1, 131, 52, 11, 98, 1, 80, 113, 3, 232, 128, 90, 139, 219, 15, 199, 67, 65, 207, 36, 21, 236, 186, 92, 173, 52, 26, 7, 191, 143, 255, 39, 198, 5, 146, 158, 201, 247, 93, 47, 249, 202, 133, 102, 84 },
-                            PasswordSalt = new byte[] { 161, 254, 5, 220, 148, 251, 240, 162, 229, 28, 193, 18, 131, 184, 205, 86, 205, 164, 183, 61, 191, 55, 61, 47, 105, 45, 31, 145, 22, 134, 228, 74, 150, 206, 195, 144, 147, 182, 114, 251, 64, 154, 203, 164, 140, 165, 245, 237, 151, 250, 249, 116, 108, 32, 172, 1, 172, 60, 171, 122, 93, 162, 111, 161, 204, 116, 59, 103, 90, 112, 146, 94, 32, 215, 247, 247, 202, 62, 103, 159, 249, 32, 127, 48, 193, 168, 148, 38, 148, 108, 108, 242, 66, 188, 225, 161, 99, 239, 234, 254, 193, 224, 183, 159, 136, 238, 77, 183, 102, 48, 121, 158, 220, 87, 126, 208, 30, 134, 107, 79, 118, 133, 34, 128, 30, 80, 170, 126 },
+                            PasswordHash = new byte[] { 222, 247, 219, 129, 218, 22, 43, 123, 61, 172, 164, 103, 49, 222, 133, 73, 20, 23, 107, 223, 64, 103, 148, 62, 249, 98, 43, 28, 246, 71, 111, 222, 230, 130, 131, 75, 157, 156, 94, 214, 232, 74, 186, 211, 5, 18, 127, 200, 154, 15, 69, 205, 89, 221, 117, 196, 221, 246, 8, 84, 203, 213, 14, 217 },
+                            PasswordSalt = new byte[] { 218, 180, 40, 20, 12, 105, 129, 140, 15, 159, 134, 238, 189, 182, 161, 83, 229, 230, 211, 87, 138, 200, 179, 103, 180, 244, 25, 193, 251, 182, 34, 225, 125, 14, 12, 80, 70, 56, 181, 209, 187, 7, 128, 153, 70, 127, 49, 103, 199, 174, 126, 33, 149, 108, 199, 193, 99, 9, 225, 135, 26, 6, 210, 151, 129, 40, 187, 248, 98, 162, 67, 50, 66, 229, 152, 86, 149, 233, 179, 12, 229, 192, 115, 240, 227, 34, 139, 220, 194, 50, 9, 0, 131, 161, 18, 145, 3, 129, 54, 218, 245, 233, 6, 164, 126, 197, 27, 80, 55, 225, 95, 198, 57, 104, 248, 243, 69, 168, 196, 38, 100, 1, 221, 116, 126, 252, 250, 96 },
                             PhoneNumber1 = "0123456789",
                             PhoneNumber2 = "0123456789",
                             UpdatedBy = -1,
@@ -13236,16 +13236,16 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Desc")
                         .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(true)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");
@@ -13254,7 +13254,7 @@ namespace MoviePJ.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(true)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Table")
                         .IsRequired()
@@ -13266,7 +13266,7 @@ namespace MoviePJ.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 

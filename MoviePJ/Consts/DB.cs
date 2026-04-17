@@ -41,7 +41,8 @@
 		public static class AppNews
 		{
 			public const string TABLE_NAME					= "AppNews";
-			public const string DEFAULT_DATE				= "GETDATE()";
+			//public const string DEFAULT_DATE				= "GETDATE()"; // SQL Server
+			public const string DEFAULT_DATE				= "CURRENT_TIMESTAMP(6)"; // MySQL
 			public const string DEFAULT_VALUE				= null;
 			public const short COUNT						= 0;
 			public const short TITLE_LENGTH					= 100;

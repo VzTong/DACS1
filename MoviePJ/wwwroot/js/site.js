@@ -4,7 +4,10 @@
         $(this).alert('close');
     });
 
-    $(".bs-autocomplete").bsautocomplete();
+    // Only initialize bsautocomplete if elements exist
+    if ($(".bs-autocomplete").length > 0) {
+        $(".bs-autocomplete").bsautocomplete();
+    }
 
     // ẩn menu cha nếu không có menu con
     $(".nav-treeview").each(function (i, item) {

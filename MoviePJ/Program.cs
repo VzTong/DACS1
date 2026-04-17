@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
 using MoviePJ.Entities;
 using AspNetCoreHero.ToastNotification;
 using MoviePJ.WebConfig.Consts;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,14 +15,15 @@ builder.Services.AddControllersWithViews().AddRazorOptions(options =>
 	options.ViewLocationFormats.Add("/{0}.cshtml");
 });
 
-
+string connectionString = builder.Configuration.GetConnectionString("Database") ?? throw new NullReferenceException("No connection string");
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 36));
 // Kết nối DB
 builder.Services.AddDbContext<MoviePJ_DBContext>(option =>
 {
 	// Tiện khi sửa db => Chỉ cần mở file appsetting.json lên sửa trong phần Database
-	option.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
+	//option.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
+	option.UseMySql(connectionString, serverVersion);
 });
-
 // Cấu hình thông báo
 builder.Services.AddNotyf(config =>
 {
