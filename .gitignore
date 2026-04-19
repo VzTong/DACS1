@@ -1,0 +1,43 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / VSCode
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# ASP.NET Core
+appsettings.Development.json
+
+# Publish
+publish/
+
+# Node (nếu có frontend)
+node_modules/
+
+# wwwroot build (nếu dùng tool build)
+wwwroot/dist/
+wwwroot/lib/
+
+# Secrets
+secrets.json
+
+# EF Core migrations snapshot (optional)
+*Migrations/*.Designer.cs
